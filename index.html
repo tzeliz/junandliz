@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAVE THE DATE</title>
+
+    <!-- Google Fonts for styling similar to the reference website -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Full-screen background image setup */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: "Playfair", serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #ffffff;
+            background: url('{{ url_for('static', filename='images/banner.jpg') }}') no-repeat center center fixed;
+            background-size: cover; /* Full-screen background image */
+            text-align: center;
+        }
+
+        /* Lighter overlay for less tint */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(51, 50, 50, 0.4); /* Subtle overlay */ /*83, 81, 81, 0.2*/
+            z-index: 1;
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        /* Header text styling */
+        h1 {
+            font-size: 6.5rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+        }
+
+        /* Adjusted spacing for h2 elements */
+        h2 {
+            font-weight: 100;
+            font-size: 2.1rem;
+            line-height: 1.2; /* Reduces line height to bring h2 elements closer */
+            margin: 0; /* Removes additional spacing */
+        }
+
+        h3 {
+            font-family: "Quicksand", sans-serif; /* New font for h2 */
+            font-size: 1.3rem;
+            font-weight: 300;
+            line-height: 1.2; /* Reduces line height to bring h2 elements closer */
+            margin: 0; /* Removes additional spacing */
+        }
+
+        /* Styling for the wedding title */
+        .wedding-title {
+            font-size: 2.1rem;
+            font-style: italic;
+        }
+
+        /* Styling for the names */
+        .names-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Additional spacing above the calendar link */
+        .calendar-link {
+            font-family: "Quicksand", sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: #ffffff;
+            text-decoration: underline;
+            text-underline-offset: 4px; /* Adjust the underline distance */
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 3rem; /* Increase spacing before calendar link */
+        }
+
+        .calendar-link:hover {
+            color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="overlay"></div>
+
+    <div class="content">
+        <h1>SAVE THE DATE</h1>
+        <h2 class="wedding-title">"we're getting married!!!"</h2> 
+        <h2 class="names-title">- Jun and Liz</h2>
+        <h3>29 Nov 2025</h3>
+        <h3>PENANG, MALAYSIA</h3>
+        <h3>INVITATION TO FOLLOW</h3>
+        <a href="{{ url_for('download_event') }}" class="calendar-link">ADD TO CALENDAR</a>
+    </div>
+
+</body>
+</html>
