@@ -20,7 +20,7 @@
             justify-content: center;
             align-items: center;
             color: #ffffff;
-            background: url('{{ url_for('static', filename='images/banner.jpg') }}') no-repeat center center fixed;
+            background: url('static/files/banner.jpg') no-repeat center center fixed;
             background-size: cover; /* Full-screen background image */
             text-align: center;
         }
@@ -106,7 +106,7 @@
         <h3>29 Nov 2025</h3>
         <h3>PENANG, MALAYSIA</h3>
         <h3>INVITATION TO FOLLOW</h3>
-        <a href="{{ url_for('download_event') }}" class="calendar-link">ADD TO CALENDAR</a>
+        <a href="static/files/event.ics" class="calendar-link" download="Jun_and_Liz_Wedding.ics">ADD TO CALENDAR</a>
     </div>
 
 </body>
