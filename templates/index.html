@@ -44,7 +44,7 @@
 
         /* Header text styling */
         h1 {
-            font-size: 6.5rem;
+            font-size: 5.0rem;
             font-weight: 300;
             margin-bottom: 2rem;
         }
@@ -52,9 +52,10 @@
         /* Adjusted spacing for h2 elements */
         h2 {
             font-weight: 100;
-            font-size: 2.1rem;
+            font-size: 1.9rem;
             line-height: 1.2; /* Reduces line height to bring h2 elements closer */
             margin: 0; /* Removes additional spacing */
+            margin-bottom: 2rem;
         }
 
         h3 {
@@ -67,7 +68,7 @@
 
         /* Styling for the wedding title */
         .wedding-title {
-            font-size: 2.1rem;
+            font-size: 1.9rem;
             font-style: italic;
         }
 
@@ -80,7 +81,7 @@
         /* Additional spacing above the calendar link */
         .calendar-link {
             font-family: "Quicksand", sans-serif;
-            font-size: 1rem;
+            font-size: 0.8rem;
             font-weight: 300;
             color: #ffffff;
             text-decoration: underline;
@@ -100,8 +101,8 @@
     <div class="overlay"></div>
 
     <div class="content">
+        <h2>To: {{ guest_name }}</h2>
         <h1>SAVE THE DATE</h1>
-        <h2>To: {{ guest_name }},</h2>
         <h2 class="wedding-title">"we're getting married!!!"</h2> 
         <h2 class="names-title">- Jun and Liz</h2>
         <h3>29 Nov 2025</h3>
