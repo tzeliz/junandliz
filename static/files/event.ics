@@ -16,7 +16,7 @@ DTSTAMP:20251129T100000Z
 DTSTART;TZID=Asia/Kuala_Lumpur:20251129T180000
 DTEND;TZID=Asia/Kuala_Lumpur:20251129T230000
 SUMMARY:Jun and Liz's Wedding
-LOCATION:Penang, Malaysia
+LOCATION:"Penang\, Malaysia"
 DESCRIPTION:We can't wait to celebrate, invitation to follow soon!
 END:VEVENT
 END:VCALENDAR
