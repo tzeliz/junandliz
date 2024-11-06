@@ -5,13 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAVE THE DATE</title>
 
-    <!-- Google Fonts for styling similar to the reference website -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
     <style>
-        /* Full-screen background image setup */
         body, html {
             height: 100%;
             margin: 0;
@@ -21,18 +19,17 @@
             align-items: center;
             color: #ffffff;
             background: url('static/files/banner.JPG') no-repeat center center fixed;
-            background-size: cover; /* Full-screen background image */
+            background-size: cover;
             text-align: center;
         }
 
-        /* Lighter overlay for less tint */
         .overlay {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(51, 50, 50, 0.4); /* Subtle overlay */ /*83, 81, 81, 0.2*/
+            background: rgba(51, 50, 50, 0.4);
             z-index: 1;
         }
 
@@ -42,7 +39,6 @@
             padding: 20px;
         }
 
-        /* Header text styling */
         h1 {
             font-size: 5.0rem;
             font-weight: 300;
@@ -50,58 +46,63 @@
             margin-top: 2rem;
         }
 
-        /* Adjusted spacing for h2 elements */
+        .extra-spacing {
+            margin-bottom: 3.5rem !important;
+        }
+
         h2 {
             font-weight: 100;
-            line-height: 1.2; /* Reduces line height to bring h2 elements closer */
-            margin: 0; /* Removes additional spacing */
+            line-height: 1.2;
+            margin: 0;
         }
 
         h3 {
-            font-family: "Quicksand", sans-serif; /* New font for h2 */
+            font-family: "Quicksand", sans-serif;
             font-size: 1.3rem;
             font-weight: 300;
-            line-height: 1.2; /* Reduces line height to bring h2 elements closer */
-            margin: 0; /* Removes additional spacing */
+            line-height: 1.2;
+            margin: 0;
         }
 
-        /* Styling for the wedding title */
         .wedding-title {
             font-size: 1.7rem;
             font-style: italic;
         }
 
-        /* Styling for the names */
         .names-title {
             font-size: 1.5rem;
             margin-bottom: 2rem;
         }
 
-        /* Styling for the guests */
         .guests-title {
             font-size: 1.5rem;
             margin-bottom: 1.5rem;
             margin-top: 1.8rem;
-            max-width: 600px;  /* Limit width to 600px */
-            width: 90%;        /* Use 90% width on smaller screens */
-            margin: 0 auto;    /* Center the guest title */
+            max-width: 600px;
+            width: 90%;
+            margin: 0 auto;
         }
 
-        /* Additional spacing above the calendar link */
         .calendar-link {
             font-family: "Quicksand", sans-serif;
             font-size: 0.8rem;
             font-weight: 300;
             color: #ffffff;
             text-decoration: underline;
-            text-underline-offset: 4px; /* Adjust the underline distance */
+            text-underline-offset: 4px;
             cursor: pointer;
             display: inline-block;
-            margin-top: 3rem; /* Increase spacing before calendar link */
+            margin-top: 3rem;
         }
 
         .calendar-link:hover {
             color: #dddddd;
+        }
+
+        @media (max-width: 600px) {
+            .extra-spacing {
+                margin-bottom: 4rem;
+            }
         }
     </style>
 </head>
@@ -119,6 +120,17 @@
         <h3>INVITATION TO FOLLOW</h3>
         <a href="static/files/event.ics" class="calendar-link" download="Jun_and_Liz_Wedding.ics">ADD TO CALENDAR</a>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const guestTitle = document.querySelector('.guests-title');
+            const saveTheDateTitle = document.querySelector('h1');
+
+            if (guestTitle && saveTheDateTitle && guestTitle.textContent.length > 24) {
+                saveTheDateTitle.classList.add('extra-spacing');
+            }
+        });
+    </script>
 
 </body>
 </html>
