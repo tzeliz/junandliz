@@ -126,7 +126,7 @@
             const guestTitle = document.querySelector('.guests-title');
             const saveTheDateTitle = document.querySelector('h1');
 
-            if (guestTitle && saveTheDateTitle && guestTitle.textContent.length > 24) {
+            if (guestTitle && saveTheDateTitle && guestTitle.textContent.length < 24) {
                 saveTheDateTitle.classList.add('extra-spacing');
             }
         });
