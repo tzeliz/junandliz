@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 from datetime import datetime
 import csv
 
@@ -19,8 +19,20 @@ guest_data = load_guest_data()
 @app.route('/')
 def save_the_date():
     code = request.args.get('code')
-    guest_name = guest_data.get(code, "Guest")  # Default to 'Guest' if code is not found
+    # Check if the code is valid
+    if not code or code not in guest_data:
+        # Redirect to an "Access Denied" page if code is missing or invalid
+        return redirect(url_for('access_denied'))
+    
+    # Fetch the guest name if the code is valid
+    guest_name = guest_data.get(code, "Guest")
     return render_template('index.html', guest_name=guest_name)
+
+# Route for "Access Denied" page
+@app.route('/access-denied')
+def access_denied():
+    return render_template('access_denied.html')  # Render a template for access denied
 
 if __name__ == '__main__':
     app.run(debug=True)
+
