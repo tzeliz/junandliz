@@ -16,7 +16,8 @@ def load_guest_data():
 # Load guest data into a dictionary at the start
 guest_data = load_guest_data()
 
-@app.route('/')
+# Route for "Save the Date" page
+@app.route('/save-the-date')
 def save_the_date():
     code = request.args.get('code')
     # Check if the code is valid
@@ -26,7 +27,17 @@ def save_the_date():
     
     # Fetch the guest name if the code is valid
     guest_name = guest_data.get(code, "Guest")
-    return render_template('index.html', guest_name=guest_name)
+    return render_template('save_the_date.html', guest_name=guest_name)
+
+# Route for Invitation page
+@app.route('/invitation')
+def invitation():
+    code = request.args.get('code')
+    if not code or code not in guest_data:
+        return redirect(url_for('access_denied'))
+
+    guest_name = guest_data[code]
+    return render_template('invitation.html', guest_name=guest_name)
 
 # Route for "Access Denied" page
 @app.route('/access-denied')

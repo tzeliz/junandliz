@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jun & Liz's Wedding</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Page Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background-color: #f3eee8; /* Soft beige like reference site */
+            color: #4a4a4a; /* Dark gray text */
+        }
+
+        /* Sticky Navigation Bar */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            z-index: 1000;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #4a4a4a;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .navbar a:hover {
+            color: #a97c50; /* Elegant brown tone */
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: url('static/files/banner.JPG') no-repeat center center/cover;
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Sections */
+        section {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        h2 {
+            font-family: "Playfair Display", serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="#rsvp">RSVP</a>
+        <a href="#details">Details</a>
+        <a href="#getting-there">Getting There</a>
+        <a href="#accommodation">Accommodation</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div>
+            <h1>Jun & Liz Are Getting Married!</h1>
+            <p>29th November 2025 - Penang, Malaysia</p>
+        </div>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp">
+        <h2>RSVP</h2>
+        <p>Let us know if you can make it by filling out the RSVP form.</p>
+        <a href="https://yourrsvplink.com" target="_blank">Click here to RSVP</a>
+    </section>
+
+    <!-- Wedding Details -->
+    <section id="details">
+        <h2>Wedding Details</h2>
+        <p>Join us for a magical evening celebrating our love.</p>
+        <p>📍 Venue: Eastern & Oriental Hotel, Penang</p>
+        <p>🕕 Time: 6:00 PM</p>
+    </section>
+
+    <!-- Getting There Section -->
+    <section id="getting-there">
+        <h2>Getting There</h2>
+        <p>Find out the best ways to reach the wedding venue.</p>
+    </section>
+
+    <!-- Accommodation Section -->
+    <section id="accommodation">
+        <h2>Accommodation</h2>
+        <p>Need a place to stay? Here are some recommendations.</p>
+    </section>
+
+</body>
+</html>
