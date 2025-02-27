@@ -17,7 +17,7 @@ def load_guest_data():
 guest_data = load_guest_data()
 
 # Route for "Save the Date" page
-@app.route('/save-the-date')
+@app.route('/')
 def save_the_date():
     code = request.args.get('code')
     # Check if the code is valid
