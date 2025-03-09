@@ -3,60 +3,211 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jun & Liz's Wedding</title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <section class="hero">
+        <div class="hero-left">
+            <img src="static/files/banner.JPG" alt="Bride Running">
+            <p class="left-text">EDITORIAL <em>elegance</em> MEETS <em>raw</em> ROMANTICISM</p>
+        </div>
+        
+        <div class="hero-right">
+            <div class="top-right">
+                <img src="static/files/banner.JPG" alt="Bride Kissing Groom">
+                <p class="text-below">SOULFUL <em>storytelling</em> FOR MODERN ROMANTICS</p>
+            </div>
+    
+            <div class="bottom-right">
+                <img src="static/files/banner.JPG" alt="Wedding Celebration">
+            </div>
+        </div>
+    </section>
+    
+
 
     <style>
         /* General Page Styling */
         body, html {
             margin: 0;
             padding: 0;
-            font-family: "Poppins", sans-serif;
-            background-color: #f3eee8; /* Soft beige like reference site */
-            color: #4a4a4a; /* Dark gray text */
+            font-family: "Montserrat", sans-serif;
+            background-color: #eeeeee; 
+            color: #333;
         }
 
         /* Sticky Navigation Bar */
         .navbar {
             position: fixed;
-            top: 0;
+            top: 30px;
             width: 100%;
-            background: white;
-            padding: 15px 0;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            background: rgba(0, 0, 0, 0); /* Transparent Background */
+            padding: 10px 5%; /* Increased padding on the left and right */
             display: flex;
-            justify-content: center;
-            gap: 50px;
-            font-size: 16px;
-            font-weight: 600;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            font-weight: 500;
             z-index: 1000;
+            box-sizing: border-box;
         }
 
+        /* Left and Right Menu Styling */
+        .nav-left, .nav-right {
+            display: flex;
+            gap: 50px; /* Reduced gap between items */
+            flex-wrap: wrap; /* Allow the items to wrap */
+        }
+
+        .nav-left {
+            flex-shrink: 0;
+            justify-content: center; /* Center the left items */
+        }
+
+        .nav-right {
+            flex-shrink: 0;
+            justify-content: center; /* Center the right items */
+        }
+
+        /* Centered Text (Names) */
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-family: "Playfair Display", serif; /* Apply Playfair font */
+            font-size: 30px; /* Increase the font size */
+            font-weight: 300;
+            text-align: center;
+        }
+
+        /* Styling for menu items */
         .navbar a {
             text-decoration: none;
-            color: #4a4a4a;
-            text-transform: uppercase;
-            transition: color 0.3s;
+            color: rgb(51, 51, 51);
+            transition: color 0.3s ease-in-out;
         }
 
         .navbar a:hover {
-            color: #a97c50; /* Elegant brown tone */
+            color: gray;
         }
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            background: url('static/files/banner.JPG') no-repeat center center/cover;
-            color: white;
-            font-size: 2rem;
-            font-weight: 700;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px 10%;
+            }
+
+            .nav-left, .nav-right {
+                flex-direction: column;
+                gap: 10px;
+                justify-content: center;
+            }
+
+            .nav-center {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin-top: 10px;
+                font-size: 20px; /* Adjust font size for mobile */
+            }
         }
+
+        /* HERO SECTION */
+        .hero {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            max-width: 1200px;
+            margin: auto;
+            padding: 100px 10%; 
+            align-items: center;
+        }
+
+        /* LEFT IMAGE */
+        .hero-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .hero-left img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* TEXT BELOW LEFT IMAGE */
+        .left-text {
+            font-family: "Playfair Display", serif;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-top: 20px;
+            max-width: 80%;
+        }
+
+        /* RIGHT SECTION */
+        .hero-right {
+            display: flex;
+            flex-direction: column;
+            gap: 80px;
+            align-self: center;
+        }
+
+        /* TOP RIGHT IMAGE (Smaller) */
+        .top-right img {
+            width: 60%; /* Reduced size */
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* TEXT BELOW TOP RIGHT IMAGE */
+        .text-below {
+            font-family: "Playfair Display", serif;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 30px;
+        }
+
+        /* BOTTOM RIGHT IMAGE (Slightly Larger) */
+        .bottom-right img {
+            width: 55%; /* Increased size */
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .hero-right {
+                align-items: center;
+            }
+
+            .bottom-right img {
+                width: 90%; /* Larger on mobile */
+            }
+
+            .left-text {
+                max-width: 100%;
+            }
+        }
+
+
 
         /* Sections */
         section {
@@ -87,26 +238,20 @@
 
     <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="#rsvp">RSVP</a>
-        <a href="#details">Details</a>
-        <a href="#getting-there">Getting There</a>
-        <a href="#accommodation">Accommodation</a>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <div>
-            <h1>Jun & Liz Are Getting Married!</h1>
-            <p>29th November 2025 - Penang, Malaysia</p>
+        <div class="nav-left">
+            <a href="#details">Event Details</a>
+            <a href="#getting-there">Getting There</a>
+            <a href="#accommodation">Accommodation</a>
         </div>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp">
-        <h2>RSVP</h2>
-        <p>Let us know if you can make it by filling out the RSVP form.</p>
-        <a href="https://yourrsvplink.com" target="_blank">Click here to RSVP</a>
-    </section>
+        
+        <div class="nav-center">
+            Jun & Liz
+        </div>
+        
+        <div class="nav-right">
+            <a href="#rsvp">RSVP</a>
+        </div>
+    </nav>
 
     <!-- Wedding Details -->
     <section id="details">
@@ -126,6 +271,13 @@
     <section id="accommodation">
         <h2>Accommodation</h2>
         <p>Need a place to stay? Here are some recommendations.</p>
+    </section>
+
+    <!-- RSVP Section -->
+    <section id="rsvp">
+        <h2>RSVP</h2>
+        <p>Let us know if you can make it by filling out the RSVP form.</p>
+        <a href="https://yourrsvplink.com" target="_blank">Click here to RSVP</a>
     </section>
 
 </body>

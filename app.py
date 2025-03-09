@@ -29,14 +29,24 @@ def save_the_date():
     guest_name = guest_data.get(code, "Guest")
     return render_template('save_the_date.html', guest_name=guest_name)
 
+#def save_the_date():
+    # Remove the code requirement and always display "Guest"
+ #   guest_name = "Guest"
+ #  return render_template('save_the_date.html', guest_name=guest_name)
+
 # Route for Invitation page
+#@app.route('/invitation')
+#def invitation():
+ #   code = request.args.get('code')
+  #  if not code or code not in guest_data:
+   #     return redirect(url_for('access_denied'))
+
+    #guest_name = guest_data[code]
+    #return render_template('invitation.html', guest_name=guest_name)
 @app.route('/invitation')
 def invitation():
-    code = request.args.get('code')
-    if not code or code not in guest_data:
-        return redirect(url_for('access_denied'))
-
-    guest_name = guest_data[code]
+    # Remove the code requirement and always display "Guest"
+    guest_name = "Guest"
     return render_template('invitation.html', guest_name=guest_name)
 
 # Route for "Access Denied" page
