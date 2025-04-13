@@ -36,7 +36,6 @@
     </section>
     
 
-
     <style>
         /* General Page Styling */
         body, html {
@@ -68,18 +67,18 @@
         /* Left and Right Menu Styling */
         .nav-left, .nav-right {
             display: flex;
-            gap: 50px; /* Reduced gap between items */
-            flex-wrap: wrap; /* Allow the items to wrap */
+            align-items: center;
         }
 
         .nav-left {
-            flex-shrink: 0;
-            justify-content: center; /* Center the left items */
+            display: flex;
+            align-items: center;
         }
 
         .nav-right {
-            flex-shrink: 0;
-            justify-content: center; /* Center the right items */
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Centered Text (Names) */
@@ -92,6 +91,7 @@
             font-size: 30px; /* Increase the font size */
             font-weight: 300;
             text-align: center;
+            pointer-events: none;
         }
 
         /* Styling for menu items */
@@ -105,27 +105,6 @@
             color: gray;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .nav-left, .nav-right {
-                flex-direction: column;
-                gap: 10px;
-                justify-content: center;
-            }
-
-            .nav-center {
-                position: relative;
-                left: auto;
-                transform: none;
-                margin-top: 10px;
-                font-size: 20px; /* Adjust font size for mobile */
-            }
-        }
 
         /* HERO SECTION */
         .hero {
@@ -207,7 +186,6 @@
         .hamburger {
             font-size: 26px;
             cursor: pointer;
-            display: none; /* hidden on desktop */
             position: fixed;
             top: 30px;
             left: 30px;
@@ -240,34 +218,54 @@
             color: #333;
             text-decoration: none;
             margin-bottom: 10px;
-            font-size: 16px;
+            font-size: 11px;
             font-weight: 500;
         }
 
         /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
             .navbar {
-                flex-direction: column;
+                flex-direction: row;
+                justify-content: space-between;
                 align-items: center;
-                padding-top: 50px;
-            }
-
-            .hamburger {
-                display: block;
-            }
-
-            .nav-left, .nav-right {
-                flex-direction: column;
-                gap: 15px;
-                align-items: center;
+                padding: 10px 5%;
             }
 
             .nav-center {
-                position: relative;
-                left: auto;
-                transform: none;
-                margin-top: 15px;
                 font-size: 20px;
+                white-space: nowrap;
+                margin: 0 auto; /* Center horizontally */
+                position: static;
+                transform: none;
+                text-align: center;
+                z-index: 1;
+            }
+
+            .nav-left, .nav-right {
+                flex: 1;
+            }
+
+            .nav-left {
+                justify-content: flex-start;
+            }
+
+            .nav-right {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-shrink: 0;
+                z-index: 1;
+            }
+
+            .hamburger {
+                font-size: 24px;
+                padding: 6px 10px;
+            }
+
+            .nav-right a {
+                font-size: 11px;
+                padding: 4px 8px;
+                text-align: right;
             }
 
             .hero {
@@ -283,8 +281,6 @@
                 width: 100%;
             }
         }
-
-
 
 
         /* Sections */
@@ -332,20 +328,23 @@
 
     <!-- Hamburger Navigation -->
     <nav class="navbar">
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="nav-left">
+            <div class="hamburger" onclick="toggleMenu()">☰</div>
+        </div>
+    
+        <div class="nav-center">
+            Jun & Liz
+        </div>
+    
+        <div class="nav-right">
+            <a href="#rsvp" style="text-decoration: underline; padding: 5px;">RSVP by 1st Sept 2025</a>
+        </div>
+    
         <div class="mobile-menu" id="mobileMenu">
             <a href="#details">Event Details</a>
             <a href="#getting-there">Getting There</a>
             <a href="#accommodation">Accommodation</a>
             <a href="#rsvp">RSVP</a>
-        </div>
-        
-        <div class="nav-center">
-            Jun & Liz
-        </div>
-        
-        <div class="nav-right">
-            <a href="#rsvp" style="border: 1px solid black; padding: 5px;">RSVP by 1st September 2025</a>
         </div>
     </nav>
 
