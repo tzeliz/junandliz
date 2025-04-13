@@ -110,7 +110,6 @@
             .navbar {
                 flex-direction: column;
                 align-items: center;
-                padding: 15px 10%;
             }
 
             .nav-left, .nav-right {
@@ -147,8 +146,10 @@
         }
 
         .hero-left img {
-            width: 500px;
-            height: 600px;
+            max-width: 100%;
+            height: auto;
+            /*width: 500px;
+            height: 600px;*/
             object-fit: cover;
         }
 
@@ -174,8 +175,10 @@
 
         /* TOP RIGHT IMAGE (Smaller) */
         .top-right img {
-            width: 250px;
-            height: 350px;
+            max-width: 100%;
+            height: auto;
+            /*width: 250px;
+            height: 350px;*/
             object-fit: cover;
         }
 
@@ -192,33 +195,95 @@
 
         /* BOTTOM RIGHT IMAGE (Slightly Larger) */
         .bottom-right img {
-            width: 350px;
-            height: 350px;
+            max-width: 100%;
+            height: auto;
+            /*width: 350px;
+            height: 350px;*/
             object-fit: cover;
             margin-top: 220px;
         }
 
+        /* Hamburger Styles */
+        .hamburger {
+            font-size: 26px;
+            cursor: pointer;
+            display: none; /* hidden on desktop */
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            z-index: 1100;
+            background-color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 70px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .mobile-menu.show {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 16px;
+            font-weight: 500;
+        }
+
         /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                align-items: center;
+                padding-top: 50px;
+            }
+
+            .hamburger {
+                display: block;
+            }
+
+            .nav-left, .nav-right {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+
+            .nav-center {
+                position: relative;
+                left: auto;
+                transform: none;
+                margin-top: 15px;
+                font-size: 20px;
+            }
+
             .hero {
-                grid-template-columns: 1fr;
-                gap: 30px;
+                padding: 50px 5%;
             }
 
-            .hero-left {
-                width: 100%;
-                height: auto;
-            }
-    
             .hero-right {
-                width: 80%;
-                height: auto;
+                width: 100%;
             }
 
-            .left-text {
-                max-width: 100%;
+            .left-text, .text-below {
+                text-align: center;
+                width: 100%;
             }
         }
+
 
 
 
@@ -265,12 +330,14 @@
 </head>
 <body>
 
-    <!-- Navigation Bar -->
+    <!-- Hamburger Navigation -->
     <nav class="navbar">
-        <div class="nav-left">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <div class="mobile-menu" id="mobileMenu">
             <a href="#details">Event Details</a>
             <a href="#getting-there">Getting There</a>
             <a href="#accommodation">Accommodation</a>
+            <a href="#rsvp">RSVP</a>
         </div>
         
         <div class="nav-center">
@@ -308,6 +375,13 @@
         <p>Let us know if you can make it by filling out the RSVP form.</p>
         <a href="https://yourrsvplink.com" target="_blank">Click here to RSVP</a>
     </section>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("mobileMenu");
+            menu.classList.toggle("show");
+        }
+    </script>
 
 </body>
 </html>
