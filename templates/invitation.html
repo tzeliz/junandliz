@@ -10,30 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
-
-
-    <section class="hero">
-        <div class="hero-left">
-            <img src="static/files/banner.JPG" alt="Bride Running">
-            <p class="left-text"> 
-                <br>the <em>best</em> day of our lives with the <em>best</em> people in our lives.
-                <br><span style="display: block; margin-top: 20px;"></span>This is a once-in-a-lifetime moment for us both, it's a celebration we will cherish forever. Having you with us would make this moment even more special. Regardless of whether you can attend, we are incredibly grateful for you and the love and support you’ve shown us.
-                <br><span style="display: block; text-align: right; margin-top: 5px;">– Jun & Liz</span>
-                <br><span style="display: block; margin-top: 20px;">Please <a href="#rsvp">RSVP</a> by 1st September 2025 to confirm your attendance</span>
-            </p>
-        </div>
-        
-        <div class="hero-right">
-            <div class="top-right">
-                <img src="static/files/banner.JPG" alt="Bride Kissing Groom">
-                <p class="text-below">{{ guest_name }}, we would like to invite you to be part of our wedding day - it wouldn't be the same without you. </p>
-            </div>
-    
-            <div class="bottom-right">
-                <img src="static/files/banner.JPG" alt="Wedding Celebration">
-            </div>
-        </div>
-    </section>
     
 
     <style>
@@ -44,14 +20,18 @@
             font-family: "Montserrat", sans-serif;
             background-color: #eeeeee; 
             color: #333;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Sticky Navigation Bar */
         .navbar {
-            position: fixed;
-            top: 30px;
+            position:absolute;
+            top: 0px;
             width: 100%;
-            background: rgba(0, 0, 0, 0); /* Transparent Background */
+            background: none;
+            backdrop-filter: none; 
             padding: 10px 5%; /* Increased padding on the left and right */
             display: flex;
             justify-content: space-between;
@@ -88,7 +68,7 @@
             transform: translateX(-50%);
             white-space: nowrap;
             font-family: "Playfair Display", serif; /* Apply Playfair font */
-            font-size: 30px; /* Increase the font size */
+            font-size: 22px; /* Increase the font size */
             font-weight: 300;
             text-align: center;
             pointer-events: none;
@@ -108,92 +88,72 @@
 
         /* HERO SECTION */
         .hero {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr;
-            max-width: 1200px;
-            margin: auto;
-            padding: 100px 10%; 
+            position: relative;
+            width: 100vw;
+            height: 100vh; /* or use 50vh if you only want top half */
+            overflow: hidden;
+            margin: 0; /* Ensure no margin is pushing it down */
+            padding: 0; /* Ensure no padding is pushing it down */
+            z-index: 0; /* Ensure the hero section is behind the navbar */
         }
 
-        /* LEFT IMAGE */
-        .hero-left {
-            display: flex;
-            flex-direction: column;
-            margin-top: 40px;
-            margin-left: 50px;
-            align-self: start; /* Ensures this section is aligned to the top */
-        }
-
-        .hero-left img {
-            max-width: 100%;
-            height: auto;
-            /*width: 500px;
-            height: 600px;*/
+        .hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             object-fit: cover;
+            object-position: center;
         }
 
-
-        /* TEXT BELOW LEFT IMAGE */
-        .left-text {
-            font-family: "EB Garamond", serif;
-            font-size: 1.1rem;
+        .header-text {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.95rem;
             font-weight: 400;
             letter-spacing: 0.05em;
             text-align: center;
-            margin-top: 150px;
+            margin-top: 30px;
             max-width: 100%;
         }
 
-        /* RIGHT SECTION */
-        .hero-right {
-            display: flex;
-            flex-direction: column;
-            margin-top: 100px;
-            align-self: start;
-        }
-
-        /* TOP RIGHT IMAGE (Smaller) */
-        .top-right img {
-            max-width: 100%;
-            height: auto;
-            /*width: 250px;
-            height: 350px;*/
-            object-fit: cover;
-        }
-
-        /* TEXT BELOW TOP RIGHT IMAGE */
-        .text-below {
-            font-family: "EB Garamond", serif;
-            font-size: 1.1rem;
+        .paragraph-text {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.95rem;
             font-weight: 400;
             letter-spacing: 0.05em;
-            margin-top: 30px;
-            max-width: 75%;
-            
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            margin-left: auto; /* center the block horizontally */
+            margin-right: auto;
+            max-width: 60%;
         }
 
-        /* BOTTOM RIGHT IMAGE (Slightly Larger) */
-        .bottom-right img {
-            max-width: 100%;
-            height: auto;
-            /*width: 350px;
-            height: 350px;*/
-            object-fit: cover;
-            margin-top: 220px;
+        .paragraph-text-details {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: auto; /* center the block horizontally */
+            margin-right: auto;
+            max-width: 60%;
+            line-height: 1.5;
         }
 
         /* Hamburger Styles */
         .hamburger {
-            font-size: 26px;
+            font-size: 32px;
             cursor: pointer;
-            position: fixed;
-            top: 30px;
-            left: 30px;
-            z-index: 1100;
-            background-color: white;
-            padding: 8px 12px;
-            border-radius: 5px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            color: #eeeeeec9;
         }
 
         /* Mobile Menu */
@@ -222,21 +182,128 @@
             font-weight: 500;
         }
 
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            z-index: 1200;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+        }
+
+        .mobile-drawer.show {
+            transform: translateX(0);
+        }
+
+        /* Top Row: Jun & Liz + Close button */
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .drawer-title {
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .close-drawer {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            padding-right: 30px;
+        }
+
+        /* Navigation links */
+        .drawer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-left: 5px;
+        }
+
+        .drawer-nav a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 20px 0;
+            background-color: #eeeeee; /* same as your background */
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: gray;
+        }
+
+        /* Photo Gallery Section */
+        .photo-gallery {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: 40px 0; /* Adds space above and below the images */
+            max-width: 100%;
+            padding: 0 20px; /* Ensures the images don't touch the edges */
+            flex-wrap: wrap; /* Ensures responsiveness */
+        }
+
+        .photo {
+            width: 30%; /* Set width of each photo container */
+            height: 60vh; /* Set a fixed height of 60% of the viewport height */
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%; /* Fill the container's height */
+            object-fit: cover; /* Ensures the image fills the container and is cropped */
+            border-radius: 0px; /* Adds rounded corners to images */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds some shadow effect */
+        }
+
         /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
             .navbar {
                 flex-direction: row;
                 justify-content: space-between;
                 align-items: center;
-                padding: 10px 5%;
+                /* padding: 10px 5%; */
             }
 
             .nav-center {
-                font-size: 20px;
+                font-size: 18px;
                 white-space: nowrap;
-                margin: 0 auto; /* Center horizontally */
-                position: static;
-                transform: none;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
                 text-align: center;
                 z-index: 1;
             }
@@ -247,6 +314,7 @@
 
             .nav-left {
                 justify-content: flex-start;
+                padding-left: 0;
             }
 
             .nav-right {
@@ -258,7 +326,7 @@
             }
 
             .hamburger {
-                font-size: 24px;
+                font-size: 27px;
                 padding: 6px 10px;
             }
 
@@ -269,49 +337,86 @@
             }
 
             .hero {
-                padding: 50px 5%;
+                height: 50vh;
             }
 
             .hero-right {
                 width: 100%;
             }
 
-            .left-text, .text-below {
+            .header-text {
                 text-align: center;
                 width: 100%;
+                font-size: 0.8rem;
+            }
+
+            .paragraph-text {
+                text-align: left; /* left align on mobile too */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 75%;
+                text-align: left;
+                font-size: 0.8rem;
+            }
+
+            .paragraph-text-details {
+                text-align: left; /* left align on mobile too */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 75%;
+                text-align: left;
+                font-size: 0.7rem;
+            }
+
+            .footer-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px 0;
+                background-color: #eeeeee; /* same as your background */
+                font-family: "Montserrat", sans-serif;
+                font-size: 0.5rem;
+                font-weight: 400;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            }
+
+            .photo-gallery {
+                display: flex;
+                flex-wrap: wrap; /* Allow images to wrap for smaller screens */
+                width: 90%; /* Full width of the screen */
+                gap: 2.5px; /* Adds a small gap between the images */
+                }
+
+            .photo {
+                width: calc(33.33% - 5px); /* 3 images per row, each takes up 33.33% of the width */
+                height: 20vh; /* Let the height adjust based on the aspect ratio of the image */
+                box-sizing: border-box; /* Ensure padding and border don't affect width */
+            }
+
+            .photo img {
+                width: 100%; /* Ensure the image fills the width of the container */
+                height: auto; /* Keep the aspect ratio of the image */
+                object-fit: cover; /* Cover the container, maintaining the aspect ratio */
             }
         }
 
 
         /* Sections */
         section {
-            padding: 80px 20px;
             text-align: center;
-            background-color: #f4f4f4; /* You can change this to any color you prefer */
-        }
-
-        /* Optional: If you want specific sections to have different background colors */
-        #details {
-            background-color: #d5d1ba; 
-        }
-
-        #getting-there {
-            background-color: #f1e9d5; 
-        }
-
-        #accommodation {
-            background-color: #d5d1ba; 
+            background-color: #eeeeee; /* You can change this to any color you prefer */
         }
 
         h2 {
-            font-family: "Playfair", sans-serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 1.5rem;
             font-weight: 300;
             margin-bottom: 20px;
         }
 
         p {
-            font-family: "EB Garamond", serif;
+            font-family: "Montserrat", sans-serif;
             font-size: 1.1rem;
             max-width: 600px;
             margin: auto;
@@ -322,65 +427,97 @@
             scroll-behavior: smooth;
         }
 
+        main {
+            flex: 1 0 auto; /* This tells <main> to grow and fill vertical space */
+        }
+
+        footer {
+            flex-shrink: 0; /* This ensures footer stays at its normal height */
+        }
+
     </style>
 </head>
 <body>
-
     <!-- Hamburger Navigation -->
     <nav class="navbar">
-        <div class="nav-left">
+        <div class="nav-left"></div>
+
+        <div class="nav-right">
             <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
     
         <div class="nav-center">
-            Jun & Liz
+            Jun <em>and</em> Liz
         </div>
     
-        <div class="nav-right">
-            <a href="#rsvp" style="text-decoration: underline; padding: 5px;">RSVP by 1st Sept 2025</a>
-        </div>
-    
-        <div class="mobile-menu" id="mobileMenu">
-            <a href="#details">Event Details</a>
-            <a href="#getting-there">Getting There</a>
-            <a href="#accommodation">Accommodation</a>
-            <a href="#rsvp">RSVP</a>
+        <div class="mobile-drawer" id="mobileDrawer">
+            <div class="drawer-header">
+                <span class="drawer-title" onclick="toggleMenu()">Jun & Liz</span>
+                <button class="close-drawer" onclick="toggleMenu()">✕</button>
+            </div>
+            <nav class="drawer-nav">
+              <a href="details.html">Details</a>
+              <a href="favourites.html">Favourites</a>
+              <a href="rsvp.html">RSVP</a>
+            </nav>
         </div>
     </nav>
-
-    <!-- Event Details -->
-    <section id="details">
-        <h2>Event Details</h2>
-        <p>Join us for a magical evening celebrating our love.</p>
-        <p>📍 Venue: Eastern & Oriental Hotel, Penang</p>
-        <p>🕕 Time: 6:00 PM</p>
+    <main>
+    <section class="hero">
+        <img src="static/files/banner.JPG" alt="Hero Image">
     </section>
 
-    <!-- Getting There Section -->
-    <section id="getting-there">
-        <h2>Getting There</h2>
-        <p>Find out the best ways to reach the wedding venue.</p>
+    <!-- Homepage -->
+    <section id="homepage">
+        <h2 class="header-text">{{ guest_name }},</h2>
+        <p class="paragraph-text">We are so excited to formally invite you to our wedding. It would mean the world to celebrate the happiest day of our lives with our favourite people - <em>it wouldn't be the same without you.</em></p>
+        <p class="paragraph-text-details">SATURDAY 29 NOV 2025<br>
+            AT SIX O'CLOCK IN THE EVENING<br>
+            PARKROYAL PENANG RESORT<br>
+            <em>formal attire</em>
+        </p>
+        <p class="paragraph-text">Please <a href="#rsvp" style="color: inherit; text-decoration: underline; font-weight: 600;">RSVP</a> by 31st August 2025</p>
     </section>
 
-    <!-- Accommodation Section -->
-    <section id="accommodation">
-        <h2>Accommodation</h2>
-        <p>Need a place to stay? Here are some recommendations.</p>
-    </section>
-
-    <!-- RSVP Section -->
-    <section id="rsvp">
-        <h2>RSVP</h2>
-        <p>Let us know if you can make it by filling out the RSVP form.</p>
-        <a href="https://yourrsvplink.com" target="_blank">Click here to RSVP</a>
+    <section id="photos" class="photo-gallery">
+        <div class="photo">
+            <img src="static/files/banner.JPG" alt="Photo 1">
+        </div>
+        <div class="photo">
+            <img src="static/files/banner.JPG" alt="Photo 2">
+        </div>
+        <div class="photo">
+            <img src="static/files/banner.JPG" alt="Photo 3">
+        </div>
     </section>
 
     <script>
+        const drawer = document.getElementById("mobileDrawer");
+    
         function toggleMenu() {
-            const menu = document.getElementById("mobileMenu");
-            menu.classList.toggle("show");
+            drawer.classList.toggle("show");
         }
+    
+        // Optional: close drawer when clicking a link
+        drawer.addEventListener("click", (e) => {
+            if (e.target.tagName === "A") {
+                drawer.classList.remove("show");
+            }
+        });
+    
+        // Optional: click outside to close
+        window.addEventListener("click", (e) => {
+            if (!drawer.contains(e.target) && !e.target.classList.contains("hamburger")) {
+                drawer.classList.remove("show");
+            }
+        });
     </script>
 
+    </main>
+    <footer class="footer-nav">
+        <a href="details.html">Details</a>
+        <a href="favourites.html">Favourites</a>
+        <a href="rsvp.html">RSVP</a>
+    </footer>
 </body>
 </html>
