@@ -1,97 +1,88 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+{% extends "base.html" %}
 
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
+{% block content %}
 
-    <!-- Internal CSS -->
-    <style>
-        .page-header {
-          font-family: "Playfair Display", serif; /* Apply Playfair font */
-          font-size: 30px; /* Same as your nav header font size */
-          text-align: left;
-          margin: 20px;
-        }
-
-        .details-content {
-          margin: 20px;
-          text-align: left;
-        }
-
-        .section-header {
-          font-family: "Playfair Display", serif; /* Apply Playfair font */
-          font-size: 22px; /* Smaller than page header */
-          margin-top: 30px;
-          margin-bottom: 10px;
-        }
-
-        .paragraph-text-details {
-          font-family: "Montserrat", sans-serif;
-          font-size: 0.9rem;
-          font-weight: 400;
-          letter-spacing: 0.05em;
-          margin-left: auto; /* center the block horizontally */
-          margin-right: auto;
-          line-height: 1.5;
-        }
-
-        /* RESPONSIVE DESIGN */
-        @media (max-width: 768px) {
-          .paragraph-text-details {
-                text-align: left; /* left align on mobile too */
-                margin-left: auto;
-                margin-right: auto;
-                max-width: 75%;
-                font-size: 0.7rem;
-            }
-          }
-    </style>
-
-</head>
-<body>
+    <a href="{{ url_for('invitation') }}" class="back-to-home">< back to home</a>
 
     <!-- Page Header -->
-    <header class="page-header">
-        THE DETAILS
+    <header class="details-page-header">
+      <em>THE DETAILS</em>
     </header>
 
     <!-- Main Content -->
     <main class="details-content">
         <!-- Venue Section -->
         <section class="details-section">
-            <h2 class="section-header">VENUE</h2>
-            <p class="paragraph-text-details">
+            <p class="details-section-header">VENUE</p>
+            <p class="details-text">
                 <!-- Your venue details go here -->
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus.
+                Our dinner reception will be held at the Andaman Ballroom in <a href="https://g.co/kgs/uJT8Dzx" target="_blank" style="color: inherit;">PARKROYAL Penang Resort Batu Ferringhi Beach</a><br>
+                Please arrive at 6PM.
             </p>
         </section>
 
         <!-- Parking Section -->
         <section class="details-section">
-            <h2 class="section-header">PARKING</h2>
-            <p class="paragraph-text-details">
+            <p class="details-section-header">PARKING</p>
+            <p class="details-text">
                 <!-- Your parking details go here -->
-                Nulla facilisi. Duis aliquet egestas purus in blandit.
+                Parking is free at the hotel. There will also be additional parking spaces across the hotel in the event the venue reaches full capacity. 
             </p>
         </section>
 
         <!-- Accommodation Section -->
         <section class="details-section">
-            <h2 class="section-header">ACCOMMODATION</h2>
-            <p class="paragraph-text-details">
-                <!-- Your accommodation details go here -->
-                Curabitur sit amet mauris morbi in dui quis est pulvinar ullamcorper.
+            <p class="details-section-header">ACCOMMODATION</p>
+            <p class="details-text">
+                <span class="mobile-break">Wedding guests are offered the following rates for stays at PARKROYAL Penang Resort.</span><br>
+                <span class="mobile-break">To book with these rates, please email <a href="mailto:loh.folksoon@parkroyalhotels.com" style="color: inherit;">loh.folksoon@parkroyalhotels.com</a> and mention 'wedding of Jun Ming and Liz'. All rates below include breakfast for two.</span><br>
+                <span class="mobile-break">Kindly note that more favourable rates may be available through other booking platforms.</span>
             </p>
-        </section>
-    </main>
 
-</body>
-</html>
+            <div class="table-wrapper">
+                <table class="rate-table">
+                    <thead>
+                    <tr>
+                        <th class="sticky-col">Room Category</th>
+                        <th class="not-sticky-col">Room Rate Per Night</th>
+                        <th class="not-sticky-col">Bed Type</th>
+                        <th class="not-sticky-col">Extra Day Bed Allowed</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td class="sticky-col">Superior Room</td>
+                        <td class="not-sticky-col">RM 550.00nett</td>
+                        <td class="not-sticky-col">Twin bed only</td>
+                        <td class="not-sticky-col">No</td>
+                    </tr>
+                    <tr>
+                        <td class="sticky-col">Deluxe Room</td>
+                        <td class="not-sticky-col">RM 650.00nett</td>
+                        <td class="not-sticky-col">King / Twin bed</td>
+                        <td class="not-sticky-col">Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="sticky-col">Premier Seaview Room</td>
+                        <td class="not-sticky-col">RM 980.00nett</td>
+                        <td class="not-sticky-col">King / Twin bed</td>
+                        <td class="not-sticky-col">No</td>
+                    </tr>
+                    <tr>
+                        <td class="sticky-col">Lanai Suite</td>
+                        <td class="not-sticky-col">RM 1050.00nett</td>
+                        <td class="not-sticky-col">King bed</td>
+                        <td class="not-sticky-col">Yes</td>
+                    </tr>
+                    <tr>
+                        <td class="sticky-col">Premier Seaview Suite</td>
+                        <td class="not-sticky-col">RM 1250.00nett</td>
+                        <td class="not-sticky-col">King bed</td>
+                        <td class="not-sticky-col">Yes</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+{% endblock %}

@@ -29,11 +29,6 @@ def save_the_date():
     guest_name = guest_data.get(code, "Guest")
     return render_template('save_the_date.html', guest_name=guest_name)
 
-#def save_the_date():
-    # Remove the code requirement and always display "Guest"
- #   guest_name = "Guest"
- #  return render_template('save_the_date.html', guest_name=guest_name)
-
 # Route for Invitation page
 #@app.route('/invitation')
 #def invitation():
@@ -48,6 +43,12 @@ def invitation():
     # Remove the code requirement and always display "Guest"
     guest_name = "Guest"
     return render_template('invitation.html', guest_name=guest_name)
+
+@app.route('/details')
+def details():
+    # Remove the code requirement and always display "Guest"
+    guest_name = "Guest"
+    return render_template('details.html', guest_name=guest_name)
 
 # Route for "Access Denied" page
 @app.route('/access-denied')

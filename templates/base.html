@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* General Page Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: "Montserrat", sans-serif;
+            background-color: #eeeeee; 
+            color: #333;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navigation Bar */
+        .navbar {
+            position:absolute;
+            top: 0px;
+            width: 100%;
+            background: none;
+            backdrop-filter: none; 
+            padding: 10px 5%; /* Increased padding on the left and right */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            font-weight: 500;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+
+        /* Left and Right Menu Styling */
+        .nav-left, .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Centered Text (Names) */
+        .nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: nowrap;
+            font-family: "Playfair Display", serif; /* Apply Playfair font */
+            font-size: 22px; /* Increase the font size */
+            font-weight: 300;
+            text-align: center;
+            pointer-events: none;
+        }
+
+        /* Styling for menu items */
+        .navbar a {
+            text-decoration: none;
+            color: rgb(51, 51, 51);
+            transition: color 0.3s ease-in-out;
+        }
+
+        .navbar a:hover {
+            color: gray;
+        }
+
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            width: 100vw;
+            height: 100vh; /* or use 50vh if you only want top half */
+            overflow: hidden;
+            margin: 0; /* Ensure no margin is pushing it down */
+            padding: 0; /* Ensure no padding is pushing it down */
+            z-index: 0; /* Ensure the hero section is behind the navbar */
+        }
+
+        .hero img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .header-text {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-top: 30px;
+            max-width: 100%;
+        }
+
+        .paragraph-text {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 30px;
+            margin-left: auto; /* center the block horizontally */
+            margin-right: auto;
+            max-width: 60%;
+        }
+
+        .paragraph-text-details {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 30px;
+            margin-left: auto; /* center the block horizontally */
+            margin-right: auto;
+            max-width: 60%;
+            line-height: 1.5;
+        }
+
+        /* Hamburger Styles */
+        .hamburger {
+            font-size: 32px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            margin: 0;
+            position: relative;
+            color: #eeeeeec9;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            display: none;
+            flex-direction: column;
+            position: fixed;
+            top: 70px;
+            left: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+        }
+
+        .mobile-menu.show {
+            display: flex;
+        }
+
+        .mobile-menu a {
+            color: #333;
+            text-decoration: none;
+            margin-bottom: 10px;
+            font-size: 11px;
+            font-weight: 500;
+        }
+
+        .mobile-drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: white;
+            z-index: 1200;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 30px 20px;
+        }
+
+        .mobile-drawer.show {
+            transform: translateX(0);
+        }
+
+        /* Top Row: Jun & Liz + Close button */
+        .drawer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+        }
+
+        .drawer-title {
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            color: #333;
+        }
+
+        .close-drawer {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: #333;
+            padding-right: 30px;
+        }
+
+        /* Navigation links */
+        .drawer-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            padding-left: 5px;
+        }
+
+        .drawer-nav a {
+            text-decoration: none;
+            font-size: 18px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            padding: 20px 0;
+            background-color: #eeeeee; /* same as your background */
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: gray;
+        }
+
+        /* Photo Gallery Section */
+        .photo-gallery {
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+            margin: 40px 0; /* Adds space above and below the images */
+            max-width: 100%;
+            padding: 0 20px; /* Ensures the images don't touch the edges */
+            flex-wrap: wrap; /* Ensures responsiveness */
+        }
+
+        .photo {
+            width: 30%; /* Set width of each photo container */
+            height: 60vh; /* Set a fixed height of 60% of the viewport height */
+            display: flex;
+            justify-content: center;
+        }
+
+        .photo img {
+            width: 100%;
+            height: 100%; /* Fill the container's height */
+            object-fit: cover; /* Ensures the image fills the container and is cropped */
+            border-radius: 0px; /* Adds rounded corners to images */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Adds some shadow effect */
+        }
+
+        /* Details Page */
+        .details-page-header {
+          font-family: "Playfair Display", serif; /* Apply Playfair font */
+          font-size: 30px; /* Same as your nav header font size */
+          font-weight: 400;
+          text-align: left;
+          letter-spacing: 0.13em;
+          margin-left: 150px;
+          margin-top: 30px;
+          margin-bottom: 50px;
+        }
+
+        .details-content {
+          margin-left: 0;
+          text-align: left;
+        }
+
+        .details-section-header {
+          font-family: "Montserrat", sans-serif;
+          font-size: 1.1rem; 
+          margin-top: 30px;
+          margin-bottom: 10px;
+          text-align: left;
+          margin-left: 150px;
+        }
+
+        .details-text {
+          font-family: "Montserrat", sans-serif;
+          font-size: 0.9rem;
+          font-weight: 400;
+          letter-spacing: 0.05em;
+          text-align: left;
+          line-height: 1.5;
+          margin-left: 150px;
+          max-width: 68%;
+        }
+
+        /* Styling for the 'back to home' link */
+        .back-to-home {
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            font-weight: 400;
+            color: #333;
+            display: inline-block;
+            margin-bottom: 10px;
+            cursor: pointer;
+            text-align: left;
+            margin-left: 150px;
+            margin-top: 90px;
+            text-decoration: none;
+            /* text-decoration: underline; */
+            /* text-decoration-thickness: 0.5px; Adjust thickness of the underline */
+            /* text-underline-offset: 4px; Adjust the space between the text and underline */
+        }
+
+        .back-to-home:hover {
+            color: gray;
+        }
+
+        .table-wrapper {
+            margin-left: 150px;
+            margin-top: 10px;
+            overflow-x: auto;
+            max-width: calc(100vw - 150px);
+        }
+
+        .rate-table {
+            border-collapse: collapse;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            min-width: 800px;
+        }
+
+        .rate-table th,
+        .rate-table td {
+            border: 1px solid #ccc;
+            padding: 8px 8px;
+            text-align: left;
+            white-space: nowrap;
+        }
+
+        .rate-table thead {
+            background-color: #f2f2f2;
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                /* padding: 10px 5%; */
+            }
+
+            .nav-center {
+                font-size: 18px;
+                white-space: nowrap;
+                position: absolute;
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+                z-index: 1;
+            }
+
+            .nav-left, .nav-right {
+                flex: 1;
+            }
+
+            .nav-left {
+                justify-content: flex-start;
+                padding-left: 0;
+            }
+
+            .nav-right {
+                display: flex;
+                justify-content: flex-end;
+                align-items: center;
+                flex-shrink: 0;
+                z-index: 1;
+            }
+
+            .hamburger {
+                font-size: 27px;
+                padding: 6px 10px;
+            }
+
+            .nav-right a {
+                font-size: 11px;
+                padding: 4px 8px;
+                text-align: right;
+            }
+
+            .hero {
+                height: 50vh;
+            }
+
+            .hero-right {
+                width: 100%;
+            }
+
+            .header-text {
+                text-align: center;
+                width: 100%;
+                font-size: 0.8rem;
+            }
+
+            .paragraph-text {
+                text-align: left; /* left align on mobile too */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 75%;
+                text-align: left;
+                font-size: 0.8rem;
+            }
+
+            .paragraph-text-details {
+                text-align: left; /* left align on mobile too */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 75%;
+                text-align: left;
+                font-size: 0.7rem;
+            }
+
+            .footer-nav {
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 20px 0;
+                background-color: #eeeeee; /* same as your background */
+                font-family: "Montserrat", sans-serif;
+                font-size: 0.5rem;
+                font-weight: 400;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+            }
+
+            .photo-gallery {
+                display: flex;
+                flex-wrap: wrap; /* Allow images to wrap for smaller screens */
+                width: 90%; /* Full width of the screen */
+                gap: 2.5px; /* Adds a small gap between the images */
+                }
+
+            .photo {
+                width: calc(33.33% - 5px); /* 3 images per row, each takes up 33.33% of the width */
+                height: 20vh; /* Let the height adjust based on the aspect ratio of the image */
+                box-sizing: border-box; /* Ensure padding and border don't affect width */
+            }
+
+            .photo img {
+                width: 100%; /* Ensure the image fills the width of the container */
+                height: 100%; /* Keep the aspect ratio of the image */
+                object-fit: cover; /* Cover the container, maintaining the aspect ratio */
+            }
+
+            .details-page-header {
+                font-family: "Playfair Display", serif; /* Apply Playfair font */
+                font-size: 28px; /* Same as your nav header font size */
+                font-weight: 400;
+                text-align: left;
+                letter-spacing: 0.13em;
+                margin-left: 50px;
+                margin-top: 30px;
+                margin-bottom: 30px;
+            }
+
+            .details-section-header {
+                font-family: "Montserrat", sans-serif;
+                font-size: 0.9rem; 
+                margin-top: 30px;
+                margin-bottom: 8px;
+                text-align: left;
+                margin-left: 50px;
+            }
+
+            .details-text {
+                text-align: left; /* left align on mobile too */
+                margin-left: 50px;
+                margin-right: auto;
+                max-width: 80%;
+                font-size: 0.7rem;
+            }
+
+            .back-to-home {
+                font-family: "Montserrat", sans-serif;
+                font-size: 0.7rem;
+                font-weight: 400;
+                color: #333;
+                display: inline-block;
+                margin-bottom: 10px;
+                cursor: pointer;
+                text-align: left;
+                margin-left: 50px;
+                margin-top: 70px;
+            }
+
+            .mobile-break {
+                display: block;
+                margin-bottom: 0.05rem; /* Adjust space between lines as needed */
+            }
+
+            .table-wrapper {
+                margin-left: 50px;
+                margin-right: 50px;
+                margin-bottom: 50px;
+                max-width: calc(100vw - 100px)
+            }
+
+            .rate-table {
+                font-size: 0.7rem;
+                border-collapse: collapse;
+                table-layout: fixed;
+                width: fit-content
+
+            }
+
+            .sticky-col {
+                position: sticky;
+                left: 0;
+                background-color: #f6f6f6;
+                width: 25px;
+                min-width: 40px;
+                max-width: 40px;
+                z-index: 2;
+                box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            }
+
+            .rate-table th.sticky-col {
+                z-index: 3;
+            }
+
+            .not-sticky-col {
+                width: 40px;
+            }
+
+        }
+
+
+        /* Sections */
+        section {
+            text-align: center;
+            background-color: #eeeeee; /* You can change this to any color you prefer */
+        }
+
+        h2 {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.5rem;
+            font-weight: 300;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-family: "Montserrat", sans-serif;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        main {
+            flex: 1 0 auto; /* This tells <main> to grow and fill vertical space */
+        }
+
+        footer {
+            flex-shrink: 0; /* This ensures footer stays at its normal height */
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Main Content Block (This is where content specific to each page will go) -->
+    <main>
+        {% block content %} 
+        <!-- Content of specific pages will be rendered here -->
+        {% endblock %}
+    </main>
+
+    <script>
+        const drawer = document.getElementById("mobileDrawer");
+    
+        function toggleMenu() {
+            drawer.classList.toggle("show");
+        }
+
+        // Optional: close drawer when clicking a link
+        drawer.addEventListener("click", (e) => {
+            if (e.target.tagName === "A") {
+                drawer.classList.remove("show");
+            }
+        });
+    
+        // Optional: click outside to close
+        window.addEventListener("click", (e) => {
+            if (!drawer.contains(e.target) && !e.target.classList.contains("hamburger")) {
+                drawer.classList.remove("show");
+            }
+        });
+    </script>
+</body>
+</html>
+
