@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <a href="{{ url_for('invitation') }}?code={{ code }}" class="back-to-home">< back to home</a>
+
+    <!-- Page Header -->
+    <header class="details-page-header">
+      <em>FAVOURITES</em>
+    </header>
+
+    <!-- Description Paragraph -->
+    <p class="details-text">
+      We’ve put together a list of our favourite places to eat, things to do, and must-see spots around Penang. Half the fun is exploring, and this list is here to help! Most of these picks come from my husband-to-be, who’s a true Penang local—so you know they’re legit. Whether you're here for a few days or making a holiday out of it, we hope you find something you’ll love!
+    </p>
+
+    <!-- Embedded Google Map -->
+    <div class="centered-map">
+      <iframe src="https://www.google.com/maps/d/embed?mid=1E2dD7mZNAS4-IIUm7n2dCKQxk0KiSdI&ehbc=2E312F&noprof=1" 
+              width="100%" 
+              height="480" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy">
+      </iframe>
+    </div>
+
+{% endblock %}

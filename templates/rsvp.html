@@ -1,0 +1,222 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <a href="{{ url_for('invitation') }}?code={{ code }}" class="back-to-home">< back to home</a>
+
+    <!-- Page Header -->
+    <header class="details-page-header">
+      <em>RSVP</em>
+    </header>
+
+    <section style="padding: 10px 0;">
+      <form id="rsvpForm" action="/submit-rsvp" method="POST" class="details-text" style="max-width: 600px; margin-right: 30px;">
+        <div class="form-group">
+          <label for="guest_name">NAME *</label>
+          <select id="guest_name" name="guest_name">
+            <option value="">-- Please select your name --</option>
+            {% for guest in guests %}
+              <option value="{{ guest }}">{{ guest }}</option>
+            {% endfor %}
+          </select>
+        </div>
+    
+        <div class="form-group">
+          <label for="rsvp_response">WILL YOU BE ATTENDING *</label>
+          <select id="rsvp_response" name="rsvp_response">
+            <option value="">-- Select --</option>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+          </select>
+        </div>
+    
+        <div id="dietaryWrapper" style="display:none;">
+          <label for="dietary_requirements">DIETARY REQUIREMENTS</label><br />
+          <input type="text" id="dietary_requirements" name="dietary_requirements" placeholder="Leave blank if none" />
+        </div>
+        
+        <!-- <div class="form-group" id="emailWrapper">
+          <label for="email">EMAIL ADDRESS <span style="color: #000000;">*</span></label>
+          <input type="email" id="email" name="email" />
+        </div> -->
+
+        <div class="form-group" id="phone-combined" style="display:none;">
+          <label for="phone_number">MOBILE PHONE NUMBER <span style="color: #000000;">*</span></label>
+          <p style="margin-top: 4px; margin-bottom: 8px; color: #555; font-family: Montserrat ;font-size: 0.8em;">
+            We’ll send you any updates on WhatsApp, if needed.
+          </p>
+          <div class="phone-combined">
+            <select id="country_code" name="country_code">
+              <option value="+60">+60 (MY)</option>
+              <option value="+61">+61 (AU)</option>
+              <option value="+86">+86 (CN)</option>
+              <option value="+852">+852 (HK)</option>
+              <option value="+91">+91 (IN)</option>
+              <option value="+64">+64 (NZ)</option>
+              <option value="+65">+65 (SG)</option>
+              <option value="+44">+44 (UK)</option>
+              <option value="+1">+1 (US/CA)</option>
+            </select>
+            <div id="phone-input-wrapper">
+              <input type="tel" id="phone_number" name="phone_number" placeholder="Phone number" />
+            </div>
+          </div>
+        </div>
+
+        <div id="dancesongWrapper" style="display:none;">
+        <label for="dance_song">A SONG TO GET YOU ON THE <br />DANCE FLOOR</label><br />
+        <input type="text" id="dance_song" name="dance_song" />
+        </div>
+    
+        <div style="display: flex; justify-content: center; margin-top: 20px; margin-bottom: 50px;">
+          <button type="submit" style="padding: 10px 20px; font-family: Montserrat; font-size: 0.8rem;">Submit RSVP</button>
+        </div>
+      </form>
+    
+      <div id="confirmationMessage" class="confirmationMessage" hidden>
+        <p>Thank you for your RSVP! 
+          <br> Refresh the page if you'd like to RSVP for another guest.</p>
+        <img src="{{ url_for('static', filename='files/LizJun-walkout.JPG') }}" alt="Thank you"/>
+      </div>
+
+    </section>
+
+    <script>
+      const rsvp_responseSelect = document.getElementById("rsvp_response");
+      const dietaryWrapper = document.getElementById("dietaryWrapper");
+      const form = document.getElementById("rsvpForm");
+      const confirmation = document.getElementById("confirmationMessage");
+      const phoneCombined = document.getElementById("phone-combined");
+    
+      rsvp_responseSelect.addEventListener("change", () => {
+        dietaryWrapper.style.display = rsvp_responseSelect.value === "Yes" ? "block" : "none";
+      });
+
+      rsvp_responseSelect.addEventListener("change", () => {
+        phoneCombined.style.display = rsvp_responseSelect.value === "Yes" ? "block" : "none";
+      });
+
+      rsvp_responseSelect.addEventListener("change", () => {
+        dancesongWrapper.style.display = rsvp_responseSelect.value === "Yes" ? "block" : "none";
+      });
+    
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+    
+        // Clear previous errors
+        document.querySelectorAll(".error-message").forEach(el => el.remove());
+    
+        const formData = new FormData(form);
+        const name = formData.get("guest_name");
+        const rsvp = formData.get("rsvp_response");
+        const countryCode = formData.get("country_code");
+        const phoneNumber = formData.get("phone_number");
+    
+        let hasError = false;
+    
+        if (!name) {
+          showError("guest_name", "Please select your name.");
+          hasError = true;
+        }
+    
+        if (!rsvp) {
+          showError("rsvp_response", "Please select your RSVP response.");
+          hasError = true;
+        }
+
+        if (rsvp === "Yes") {
+          if (!phoneNumber || phoneNumber.trim() === "") {
+            showError("phone_number", "Please enter your phone number.");
+            hasError = true;
+          }
+        }
+    
+        if (hasError) return;
+    
+        const data = Object.fromEntries(formData.entries());
+    
+        const code = new URLSearchParams(window.location.search).get('code');
+        fetch(`/submit-rsvp?code=${encodeURIComponent(code)}`, {
+          method: "POST",
+          body: JSON.stringify(data),
+          headers: { "Content-Type": "application/json" }
+        }).then(() => {
+          form.style.display = "none";
+          confirmation.style.display = "block";
+        }).catch(() => {
+          alert("There was a problem submitting your RSVP. Please try again.");
+        });
+      });
+    
+      function showError(fieldId, message) {
+        const field = document.getElementById(fieldId);
+        const formGroup = field.closest(".form-group");
+
+        // Check if an error already exists in the group
+        const existingError = formGroup.querySelector(".error-message");
+        if (existingError) return;
+
+        const error = document.createElement("div");
+        error.className = "error-message";
+        error.textContent = message;
+
+        if (fieldId === "phone_number") {
+          // Append below the phone wrapper instead of directly after input
+          const wrapper = document.getElementById("phone-input-wrapper");
+          wrapper.insertAdjacentElement("afterend", error);
+        } else {
+          field.insertAdjacentElement("afterend", error);
+        }
+      }
+
+      function removeErrorOnInput(fieldId) {
+        const field = document.getElementById(fieldId);
+        field.addEventListener("input", () => {
+          const error = field.nextElementSibling;
+          if (error && error.classList.contains("error-message") && field.value.trim() !== "") {
+            error.remove();
+          }
+        });
+        if (field.tagName === "SELECT") {
+          field.addEventListener("change", () => {
+            const error = field.nextElementSibling;
+            if (error && error.classList.contains("error-message") && field.value.trim() !== "") {
+              error.remove();
+            }
+          });
+        }
+      }
+
+      // Set up real-time validation removal
+      removeErrorOnInput("guest_name");
+      removeErrorOnInput("rsvp_response");
+      removeErrorOnInput("phone_number");
+      removeErrorOnInput("country_code");
+
+      function saveReminder() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get("code");
+
+        if (!code) {
+          alert("Missing guest code. We couldn't set the calendar reminder.");
+          return;
+        }
+
+        // Save to local storage
+        localStorage.setItem("rsvpReminder", "true");
+        alert("Reminder saved! A calendar invite will be downloaded.");
+
+        // Trigger download of the dynamic .ics file
+        const link = document.createElement("a");
+        link.href = `/rsvp-reminder.ics?code=${encodeURIComponent(code)}`;
+        link.download = "RSVP_Reminder.ics";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+      
+    </script>
+    
+
+
+{% endblock %}

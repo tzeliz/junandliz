@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&family=Italianno&family=Moon+Dance&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Playfair:ital,opsz,wght@0,5..1200,300..900;1,5..1200,300..900&family=Quicksand:wght@300..700&display=swap" rel="stylesheet">
 
     <style>
         /* General Page Styling */
@@ -109,6 +110,16 @@
         .header-text {
             font-family: "Montserrat", sans-serif;
             font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-align: center;
+            margin-top: 30px;
+            max-width: 100%;
+        }
+
+        .name-text {
+            font-family: "Moon Dance", cursive;
+            font-size: 1.5rem;
             font-weight: 400;
             letter-spacing: 0.05em;
             text-align: center;
@@ -275,7 +286,7 @@
 
         .photo {
             width: 30%; /* Set width of each photo container */
-            height: 60vh; /* Set a fixed height of 60% of the viewport height */
+            height: 70vh; /* Set a fixed height of 60% of the viewport height */
             display: flex;
             justify-content: center;
         }
@@ -373,6 +384,135 @@
             background-color: #f2f2f2;
         }
 
+        /* RSVP Page */
+        input[type="text"],
+        input[type="email"] {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            background: transparent;
+            width: 100%;
+            padding: 5px 0;
+            font-family: inherit;
+            font-size: inherit;
+            margin-bottom: 30px;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus {
+            outline: none;
+            border-bottom: 1px solid #000; /* darker line on focus, optional */
+        }
+
+        select {
+            height: 30px;
+            font-size: 0.8rem;
+            padding: 5px;
+            background: white url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='gray' d='M1.41 0L6 4.58 10.59 0 12 1.41 6 7.41 0 1.41z'/></svg>") no-repeat;
+            background-position: right 10px center;
+            background-size: 12px 8px;
+            appearance: none;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            width: 100%;
+            min-width: 100%; /* helps dropdown match */
+            box-sizing: border-box;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            font-family: inherit;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #000; /* optional: darker border on focus */
+        }
+
+        #emailWrapper {
+            display: none;
+        }
+
+        /* Reduce bottom margin for email input ONLY when followed by error */
+        #emailWrapper input[type="email"] {
+            margin-bottom: 5px; /* reduced from 30px */
+        }
+
+        #emailWrapper input[type="email"] + .error-message {
+            margin-top: 4px;
+        }
+
+        .phone-combined {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .phone-combined select,
+        .phone-combined input {
+            height: 30px;
+            padding: 0 10px;
+            font-size: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-family: inherit;
+            box-sizing: border-box;
+            line-height: 1;
+        }
+
+        /* Remove margin from select to align better */
+        .phone-combined select {
+            width: 100px;
+            min-width: auto;
+            flex-shrink: 0;
+            margin-top: 5px; /* <- key fix */
+        }
+
+        /* Nudge input down slightly */
+        .phone-combined input {
+            flex: 1;
+            position: relative;
+            top: 2.5px; /* adjust as needed: 1px or 2px should do */
+        }
+
+        .form-group {
+            margin-bottom: 20px; /* controls overall spacing between fields */
+            position: relative;
+        }
+
+        .form-group .error-message {
+            margin-top: 0px;
+            margin-bottom: 5px;
+            color: red;
+            font-size: 0.7rem;
+        }
+
+        .confirmationMessage {
+            margin: auto;
+            display: none;
+            font-family: Montserrat, sans-serif;
+            font-weight: 400;
+            text-align: center;
+            padding: 30px;
+            max-width: 80%; /* Match image max-width */
+        }
+
+        .confirmationMessage p {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .confirmationMessage img {
+            display: block;
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            margin: 20px auto 0 auto; /* Top margin and centered horizontally */
+        }
+
+        .centered-map {
+            max-width: 1000px;
+            margin: 2em auto;
+            margin-left: 150px;
+        }
+
         /* RESPONSIVE DESIGN */
         @media (max-width: 768px) {
             .navbar {
@@ -434,12 +574,19 @@
                 font-size: 0.8rem;
             }
 
+            .name-text {
+                text-align: left; /* left align on mobile too */
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 75%;
+                font-size: 1.1rem;
+            }
+
             .paragraph-text {
                 text-align: left; /* left align on mobile too */
                 margin-left: auto;
                 margin-right: auto;
                 max-width: 75%;
-                text-align: left;
                 font-size: 0.8rem;
             }
 
@@ -468,12 +615,13 @@
             .photo-gallery {
                 display: flex;
                 flex-wrap: wrap; /* Allow images to wrap for smaller screens */
-                width: 90%; /* Full width of the screen */
+                width: 100%; /* Full width of the screen */
                 gap: 2.5px; /* Adds a small gap between the images */
+                padding: 0 5px; /* Ensures the images don't touch the edges */
                 }
 
             .photo {
-                width: calc(33.33% - 5px); /* 3 images per row, each takes up 33.33% of the width */
+                width: calc(33.33% - 10px); /* 3 images per row, each takes up 33.33% of the width */
                 height: 20vh; /* Let the height adjust based on the aspect ratio of the image */
                 box-sizing: border-box; /* Ensure padding and border don't affect width */
             }
@@ -509,7 +657,7 @@
                 margin-left: 50px;
                 margin-right: auto;
                 max-width: 80%;
-                font-size: 0.7rem;
+                font-size: 0.8rem;
             }
 
             .back-to-home {
@@ -563,6 +711,12 @@
             .not-sticky-col {
                 width: 40px;
             }
+
+            .centered-map {
+                max-width: 300px;
+                margin: 2em auto;
+            }
+
 
         }
 

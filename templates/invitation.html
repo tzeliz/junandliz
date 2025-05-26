@@ -9,55 +9,55 @@
             <div class="hamburger" onclick="toggleMenu()">☰</div>
         </div>
 
-        <div class="nav-center">
-            <a href="{{ url_for('invitation') }}" style="color: inherit; text-decoration: none;">
-                Jun <em>and</em> Liz
-            </a>
-        </div>
-
         <div class="mobile-drawer" id="mobileDrawer">
             <div class="drawer-header">
-                <span class="drawer-title" onclick="window.location.href='{{ url_for('invitation') }}'">Jun & Liz</span>
+                <span class="drawer-title" onclick="window.location.href='{{ url_for('invitation') }}?code={{ code }}'">Jun & Liz</span>
                 <button class="close-drawer" onclick="toggleMenu()">✕</button>
             </div>
             <nav class="drawer-nav">
-                <a href="{{ url_for('details') }}">Details</a>
-                <a href="favourites.html">Favourites</a>
-                <a href="rsvp.html">RSVP</a>
+                <a href="{{ url_for('details') }}?code={{ code }}">Details</a>
+                <a href="{{ url_for('favourites') }}?code={{ code }}">Favourites</a>
+                <a href="{{ url_for('rsvp') }}?code={{ code }}">RSVP</a>
             </nav>
         </div>
     </nav>
     
     <section class="hero">
-        <img src="static/files/banner.JPG" alt="Hero Image">
+        <img src="static/files/LizJun-confetti.JPG" alt="Hero Image">
     </section>
 
     <section id="homepage">
-        <h2 class="header-text">{{ guest_name }},</h2>
+        <h2 class="name-text"><strong><em>{{ guest_name }}</em></strong></h2>
         <p class="paragraph-text">We are so excited to formally invite you to our wedding. It would mean the world to celebrate the happiest day of our lives with our favourite people - <em>it wouldn't be the same without you.</em></p>
         <p class="paragraph-text-details">SATURDAY 29 NOV 2025<br>
-            AT SIX O'CLOCK IN THE EVENING<br>
+            FROM SIX O'CLOCK IN THE EVENING<br>
             PARKROYAL PENANG RESORT<br>
             <em>formal attire</em>
         </p>
-        <p class="paragraph-text">Please <a href="#rsvp" style="color: inherit; text-decoration: underline; font-weight: 600;">RSVP</a> by 31st August 2025</p>
+        <p class="paragraph-text">Please RSVP by 31st August 2025.</p>
     </section>
+
+    <button
+    style="padding: 10px 15px; font-family: Montserrat; font-size: 0.8rem; display: block; margin: 0 auto;"
+    onclick="location.href='{{ url_for('rsvp') }}?code={{ code }}'">
+    RSVP
+    </button>
 
     <section id="photos" class="photo-gallery">
         <div class="photo">
-            <img src="static/files/banner.JPG" alt="Photo 1">
+            <img src="{{ url_for('static', filename='files/LizJun-flowers.JPG') }}" alt="Left Photo">
         </div>
         <div class="photo">
-            <img src="static/files/banner.JPG" alt="Photo 2">
+            <img src="{{ url_for('static', filename='files/LizJun-dip.JPG') }}" alt="Middle Photo">
         </div>
         <div class="photo">
-            <img src="static/files/banner.JPG" alt="Photo 3">
+            <img src="{{ url_for('static', filename='files/LizJun-hallway.JPG') }}" alt="Right Photo">
         </div>
     </section>
 
     <footer class="footer-nav">
-        <a href="{{ url_for('details') }}">Details</a>
-        <a href="favourites.html">Favourites</a>
-        <a href="rsvp.html">RSVP</a>
+        <a href="{{ url_for('details') }}?code={{ code }}">Details</a>
+        <a href="{{ url_for('favourites') }}?code={{ code }}">Favourites</a>
+        <a href="{{ url_for('rsvp') }}?code={{ code }}">RSVP</a>
     </footer>
 {% endblock %}

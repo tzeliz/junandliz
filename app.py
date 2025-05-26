@@ -1,8 +1,13 @@
-from flask import Flask, render_template, request, redirect, url_for
-from datetime import datetime
+from flask import Flask, render_template, request, redirect, url_for, make_response
+from datetime import datetime, timedelta
 import csv
+import os 
+import pytz
+
 
 app = Flask(__name__)
+
+CSV_FILE = 'rsvps.csv'
 
 # Function to load guest data from CSV
 def load_guest_data():
@@ -30,25 +35,78 @@ def save_the_date():
     return render_template('save_the_date.html', guest_name=guest_name)
 
 # Route for Invitation page
-#@app.route('/invitation')
-#def invitation():
- #   code = request.args.get('code')
-  #  if not code or code not in guest_data:
-   #     return redirect(url_for('access_denied'))
-
-    #guest_name = guest_data[code]
-    #return render_template('invitation.html', guest_name=guest_name)
 @app.route('/invitation')
 def invitation():
-    # Remove the code requirement and always display "Guest"
-    guest_name = "Guest"
-    return render_template('invitation.html', guest_name=guest_name)
+    code = request.args.get('code')
+    if not code or code not in guest_data:
+        return redirect(url_for('access_denied'))
 
+    guest_name = guest_data[code]
+    return render_template('invitation.html', guest_name=guest_name, code = code)
+
+# Route for Details page
 @app.route('/details')
 def details():
-    # Remove the code requirement and always display "Guest"
-    guest_name = "Guest"
-    return render_template('details.html', guest_name=guest_name)
+    code = request.args.get('code')
+
+    # Check if the code is valid
+    if not code or code not in guest_data:
+        return redirect(url_for('access_denied'))
+    
+    return render_template('details.html', code = code)
+
+# Route for RSVP page
+@app.route('/rsvp')
+def rsvp():
+    code = request.args.get('code')
+
+    # Check if the code is valid
+    if not code or code not in guest_data:
+        return redirect(url_for('access_denied'))
+
+    # Get full group name string from CSV (e.g., "Alex Smith & Jamie Tran")
+    raw_guest_string = guest_data[code]
+
+    # Split into individual names
+    guests = [g.strip() for part in raw_guest_string.split('&') for g in part.split(',')]
+
+    return render_template('rsvp.html', guests=guests, group_name=raw_guest_string, code=code)
+
+# Route for Submit RSVP page
+@app.route('/submit-rsvp', methods=['POST'])
+def submit_rsvp():
+    code = request.args.get('code')
+    if not code or code not in guest_data:
+        return redirect(url_for('access_denied'))
+    
+    data = request.get_json()  # read JSON
+
+    name = data.get('guest_name')
+    rsvp = data.get('rsvp_response')
+    dietary = data.get('dietary_requirements', '')
+    phone = data.get('phone_number')
+    country_code = data.get('country_code', '')
+    song = data.get('dance_song', '')
+    timestamp = datetime.now().isoformat()
+
+    full_phone = f"{country_code}{phone}" if phone else ''
+
+    file_exists = os.path.isfile(CSV_FILE)
+    with open(CSV_FILE, 'a', newline='') as csvfile:
+        writer = csv.writer(csvfile)
+        if not file_exists:
+            writer.writerow(['Timestamp', 'Name', 'RSVP', 'Dietary Requirements', 'Phone Number', 'Dance Song'])
+        writer.writerow([timestamp, name, rsvp, dietary, full_phone, song])
+
+    return jsonify({'success': True}), 200
+
+# Route for Favourites page
+@app.route('/favourites')
+def favourites():
+    code = request.args.get('code')
+    if not code or code not in guest_data:
+        return redirect(url_for('access_denied'))
+    return render_template('favourites.html', code=code)
 
 # Route for "Access Denied" page
 @app.route('/access-denied')

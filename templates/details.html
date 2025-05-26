@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    <a href="{{ url_for('invitation') }}" class="back-to-home">< back to home</a>
+    <a href="{{ url_for('invitation') }}?code={{ code }}" class="back-to-home">< back to home</a>
 
     <!-- Page Header -->
     <header class="details-page-header">
@@ -16,7 +16,7 @@
             <p class="details-section-header">VENUE</p>
             <p class="details-text">
                 <!-- Your venue details go here -->
-                Our dinner reception will be held at the Andaman Ballroom in <a href="https://g.co/kgs/uJT8Dzx" target="_blank" style="color: inherit;">PARKROYAL Penang Resort Batu Ferringhi Beach</a><br>
+                Our dinner reception will be held at the Andaman Ballroom in <a href="https://g.co/kgs/uJT8Dzx" target="_blank" style="color: inherit; text-decoration: underline; text-underline-offset: 4px;">PARKROYAL Penang Resort Batu Ferringhi Beach</a><br>
                 Please arrive at 6PM.
             </p>
         </section>
@@ -26,7 +26,7 @@
             <p class="details-section-header">PARKING</p>
             <p class="details-text">
                 <!-- Your parking details go here -->
-                Parking is free at the hotel. There will also be additional parking spaces across the hotel in the event the venue reaches full capacity. 
+                There will be free parking available at the hotel. 
             </p>
         </section>
 
@@ -35,7 +35,9 @@
             <p class="details-section-header">ACCOMMODATION</p>
             <p class="details-text">
                 <span class="mobile-break">Wedding guests are offered the following rates for stays at PARKROYAL Penang Resort.</span><br>
-                <span class="mobile-break">To book with these rates, please email <a href="mailto:loh.folksoon@parkroyalhotels.com" style="color: inherit;">loh.folksoon@parkroyalhotels.com</a> and mention 'wedding of Jun Ming and Liz'. All rates below include breakfast for two.</span><br>
+                <span class="mobile-break">To book with these rates, please email the hotel using 
+                    <a href="mailto:loh.folksoon@parkroyalhotels.com?subject=Hotel%20Reservation%20for%20Liz%20%26%20Jun%20Ming's%20wedding%20-%2029%20Nov%202025&body=Hi%2C%0D%0A%0D%0AI%20would%20like%20to%20make%20a%20room%20reservation%20as%20part%20of%20the%20attendees%20for%20Liz%20%26%20Jun%20Ming's%20wedding%20-%2029%20Nov%202025.%20Please%20find%20my%20booking%20details%20below%3A%0D%0A%0D%0AFull%20Name%20(Ms/Mr/Mrs)%3A%0D%0AContact%20Number%3A%0D%0AType%20of%20room%3A%0D%0ANo%20Of%20Unit%3A%0D%0AArrival%20Date%3A%0D%0ADeparture%20Date%3A%0D%0A%0D%0AI%20look%20forward%20to%20your%20confirmation%20and%20details%20regarding%20payment%20and%20any%20necessary%20steps." style="color: inherit; text-decoration: underline; text-underline-offset: 4px;">this email template</a>.
+                     All rates below include breakfast for two.</span><br>
                 <span class="mobile-break">Kindly note that more favourable rates may be available through other booking platforms.</span>
             </p>
 
