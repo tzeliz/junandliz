@@ -4,8 +4,7 @@ import csv
 import os 
 import pytz
 
-
-app = Flask(__name__)
+app = Flask(__name__, static_folder='static')
 
 CSV_FILE = 'rsvps.csv'
 
