@@ -4,10 +4,10 @@ import csv
 import os 
 import pytz
 
-app = Flask(__name__, static_folder='static')
+app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 CSV_FILE = 'rsvps.csv'
-
+    
 # Function to load guest data from CSV
 def load_guest_data():
     guests = {}
