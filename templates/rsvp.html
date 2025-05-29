@@ -171,12 +171,23 @@
 
       function removeErrorOnInput(fieldId) {
         const field = document.getElementById(fieldId);
+        
         field.addEventListener("input", () => {
-          const error = field.nextElementSibling;
+          let error;
+
+          if (fieldId === "phone_number") {
+            // Look after the wrapper div for phone input
+            const wrapper = document.getElementById("phone-input-wrapper");
+            error = wrapper.nextElementSibling;
+          } else {
+            error = field.nextElementSibling;
+          }
+
           if (error && error.classList.contains("error-message") && field.value.trim() !== "") {
             error.remove();
           }
         });
+
         if (field.tagName === "SELECT") {
           field.addEventListener("change", () => {
             const error = field.nextElementSibling;
