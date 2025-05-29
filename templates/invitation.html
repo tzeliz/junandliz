@@ -37,11 +37,7 @@
         <p class="paragraph-text">Please RSVP by 31st August 2025.</p>
     </section>
 
-    <button
-    style="padding: 10px 15px; font-family: Montserrat; font-size: 0.8rem; display: block; margin: 0 auto;"
-    onclick="location.href='{{ url_for('rsvp') }}?code={{ code }}'">
-    RSVP
-    </button>
+    <button class="rsvp-button" onclick="location.href='{{ url_for('rsvp') }}?code={{ code }}'">RSVP</button>
 
     <section id="photos" class="photo-gallery">
         <div class="photo">
