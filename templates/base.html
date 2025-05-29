@@ -497,7 +497,7 @@
             
             background-color: #eeeeee;
             color: #333;
-            border: none;
+            border: 1px solid #333;
             border-radius: 4px;
             padding: 10px 15px;
             font-family: 'Montserrat', sans-serif;
@@ -512,6 +512,29 @@
             background-color: #dddddd;
         }
 
+        button,
+        button[type="submit"] {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #333;
+            border-radius: 5px;
+
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            padding: 10px 20px;
+            cursor: pointer;
+
+            transition: background-color 0.3s ease, color 0.3s ease, border 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+        }
+
         select {
             -webkit-appearance: none;
             -moz-appearance: none;
@@ -522,7 +545,7 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 0.8rem;
             padding: 10px;
-            border: none;
+            border: 1px solid #333;
             border-radius: 4px;
             width: 100%;
             box-sizing: border-box;
