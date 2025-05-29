@@ -1,15 +1,14 @@
-from flask import Flask, render_template, request, redirect, url_for, make_response
-from datetime import datetime, timedelta
+from flask import Flask, render_template, request, redirect, url_for, make_response, jsonify
+from datetime import datetime
 import csv
-import os 
-import pytz
+import os
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
 CSV_FILE = 'rsvps.csv'
-    
-# Function to load guest data from CSV
-def load_guest_data():
+
+# Load short names
+def load_short_names():
     guests = {}
     with open('names.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
@@ -17,68 +16,61 @@ def load_guest_data():
             guests[row['code']] = row['name']
     return guests
 
-# Load guest data into a dictionary at the start
-guest_data = load_guest_data()
+# Load full names
+def load_full_names():
+    full_guests = {}
+    with open('full_names.csv', newline='') as csvfile:
+        reader = csv.DictReader(csvfile)
+        for row in reader:
+            full_guests[row['code']] = row['name']
+    return full_guests
 
-# Route for "Save the Date" page
+# Load data
+guest_data = load_short_names()
+guest_full_data = load_full_names()
+
 @app.route('/')
 def save_the_date():
     code = request.args.get('code')
-    # Check if the code is valid
     if not code or code not in guest_data:
-        # Redirect to an "Access Denied" page if code is missing or invalid
         return redirect(url_for('access_denied'))
-    
-    # Fetch the guest name if the code is valid
     guest_name = guest_data.get(code, "Guest")
     return render_template('save_the_date.html', guest_name=guest_name)
 
-# Route for Invitation page
 @app.route('/invitation')
 def invitation():
     code = request.args.get('code')
     if not code or code not in guest_data:
         return redirect(url_for('access_denied'))
-
     guest_name = guest_data[code]
-    return render_template('invitation.html', guest_name=guest_name, code = code)
+    return render_template('invitation.html', guest_name=guest_name, code=code)
 
-# Route for Details page
 @app.route('/details')
 def details():
     code = request.args.get('code')
-
-    # Check if the code is valid
     if not code or code not in guest_data:
         return redirect(url_for('access_denied'))
-    
-    return render_template('details.html', code = code)
+    return render_template('details.html', code=code)
 
-# Route for RSVP page
 @app.route('/rsvp')
 def rsvp():
     code = request.args.get('code')
-
-    # Check if the code is valid
-    if not code or code not in guest_data:
+    if not code or code not in guest_full_data:
         return redirect(url_for('access_denied'))
 
-    # Get full group name string from CSV (e.g., "Alex Smith & Jamie Tran")
-    raw_guest_string = guest_data[code]
-
-    # Split into individual names
+    # Use full name for RSVP
+    raw_guest_string = guest_full_data[code]
     guests = [g.strip() for part in raw_guest_string.split('&') for g in part.split(',')]
 
     return render_template('rsvp.html', guests=guests, group_name=raw_guest_string, code=code)
 
-# Route for Submit RSVP page
 @app.route('/submit-rsvp', methods=['POST'])
 def submit_rsvp():
     code = request.args.get('code')
-    if not code or code not in guest_data:
+    if not code or code not in guest_full_data:
         return redirect(url_for('access_denied'))
-    
-    data = request.get_json()  # read JSON
+
+    data = request.get_json()
 
     name = data.get('guest_name')
     rsvp = data.get('rsvp_response')
@@ -87,7 +79,6 @@ def submit_rsvp():
     country_code = data.get('country_code', '')
     song = data.get('dance_song', '')
     timestamp = datetime.now().isoformat()
-
     full_phone = f"{country_code}{phone}" if phone else ''
 
     file_exists = os.path.isfile(CSV_FILE)
@@ -99,7 +90,6 @@ def submit_rsvp():
 
     return jsonify({'success': True}), 200
 
-# Route for Favourites page
 @app.route('/favourites')
 def favourites():
     code = request.args.get('code')
@@ -107,11 +97,9 @@ def favourites():
         return redirect(url_for('access_denied'))
     return render_template('favourites.html', code=code)
 
-# Route for "Access Denied" page
 @app.route('/access-denied')
 def access_denied():
-    return render_template('access_denied.html')  # Render a template for access denied
+    return render_template('access_denied.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
-
