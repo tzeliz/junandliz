@@ -69,7 +69,7 @@ def rsvp():
             for row in reader:
                 submitted_guests.add(row['Name'])
 
-    return render_template('rsvp.html', guests=guests, submitted_guests=list(submitted_guests), group_name=raw_guest_string, code=code)f
+    return render_template('rsvp.html', guests=guests, submitted_guests=list(submitted_guests), group_name=raw_guest_string, code=code)
 
 @app.route('/submit-rsvp', methods=['POST'])
 def submit_rsvp():
