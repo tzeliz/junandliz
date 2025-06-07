@@ -58,11 +58,18 @@ def rsvp():
     if not code or code not in guest_full_data:
         return redirect(url_for('access_denied'))
 
-    # Use full name for RSVP
     raw_guest_string = guest_full_data[code]
     guests = [g.strip() for part in raw_guest_string.split('&') for g in part.split(',')]
 
-    return render_template('rsvp.html', guests=guests, group_name=raw_guest_string, code=code)
+    # Load names that already RSVP'd
+    submitted_guests = set()
+    if os.path.exists(CSV_FILE):
+        with open(CSV_FILE, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                submitted_guests.add(row['Name'])
+
+    return render_template('rsvp.html', guests=guests, submitted_guests=list(submitted_guests), group_name=raw_guest_string, code=code)
 
 @app.route('/submit-rsvp', methods=['POST'])
 def submit_rsvp():

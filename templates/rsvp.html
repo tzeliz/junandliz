@@ -87,17 +87,21 @@
       const form = document.getElementById("rsvpForm");
       const confirmation = document.getElementById("confirmationMessage");
       const phoneCombined = document.getElementById("phone-combined");
+      const submittedGuests = {{ submitted_guests|tojson }};
     
       rsvp_responseSelect.addEventListener("change", () => {
-        dietaryWrapper.style.display = rsvp_responseSelect.value === "Yes" ? "block" : "none";
-      });
+        const selectedName = document.getElementById("guest_name").value;
 
-      rsvp_responseSelect.addEventListener("change", () => {
-        phoneCombined.style.display = rsvp_responseSelect.value === "Yes" ? "block" : "none";
-      });
+        if (submittedGuests.includes(selectedName)) {
+          alert("You’ve already submitted an RSVP. If you need to make a change, please contact us.");
+          rsvp_responseSelect.value = ""; // reset the dropdown
+          return;
+        }
 
-      rsvp_responseSelect.addEventListener("change", () => {
-        dancesongWrapper.style.display = rsvp_responseSelect.value === "Yes" ? "block" : "none";
+        const showFields = rsvp_responseSelect.value === "Yes";
+        dietaryWrapper.style.display = showFields ? "block" : "none";
+        phoneCombined.style.display = showFields ? "block" : "none";
+        dancesongWrapper.style.display = showFields ? "block" : "none";
       });
     
       form.addEventListener("submit", function (e) {
