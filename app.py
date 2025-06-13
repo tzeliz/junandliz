@@ -132,7 +132,7 @@ def access_denied():
 @app.route('/export-csv')
 def export_csv():
     # Connect to the database
-    conn = sqlite3.connect(DATABASE)
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     # Query the data you want to export
