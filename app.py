@@ -157,9 +157,12 @@ def export_csv():
     response.headers["Content-Disposition"] = "attachment; filename=rsvps_export.csv"
     return response
 
-inspector = inspect(db.engine)
-tables = inspector.get_table_names()
-print("Tables:", tables)
+@app.route('/debug-tables')
+def debug_tables():
+    from sqlalchemy import inspect
+    inspector = inspect(db.engine)
+    tables = inspector.get_table_names()
+    return jsonify({"tables": tables})
 
 if __name__ == '__main__':
     with app.app_context():
