@@ -4,6 +4,7 @@ import csv
 import os
 import io
 from flask_sqlalchemy import SQLAlchemy
+from sqlalchemy import inspect
 import sqlite3
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
@@ -155,6 +156,10 @@ def export_csv():
     response = Response(output.getvalue(), mimetype='text/csv')
     response.headers["Content-Disposition"] = "attachment; filename=rsvps_export.csv"
     return response
+
+inspector = inspect(db.engine)
+tables = inspector.get_table_names()
+print("Tables:", tables)
 
 if __name__ == '__main__':
     with app.app_context():
