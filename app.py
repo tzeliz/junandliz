@@ -21,10 +21,6 @@ class RSVP(db.Model):
     phone_number = db.Column(db.String, default='')
     dance_song = db.Column(db.String, default='')
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
-
 # Load short names
 def load_short_names():
     guests = {}
@@ -129,4 +125,6 @@ def access_denied():
     return render_template('access_denied.html')
 
 if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
     app.run(debug=True)
