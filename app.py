@@ -6,7 +6,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-DB_PATH = os.path.join(os.path.dirname(__file__), 'rsvps.db')
+DB_PATH = os.path.join('/var/data', 'rsvps.db')
 app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_PATH}'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
