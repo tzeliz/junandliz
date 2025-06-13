@@ -2,10 +2,28 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 from datetime import datetime
 import csv
 import os
+from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__, static_folder='static', static_url_path='/static')
 
-CSV_FILE = 'rsvps.csv'
+DB_PATH = os.path.join('/var/data', 'rsvps.db')
+app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_PATH}'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+class RSVP(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    timestamp = db.Column(db.String, nullable=False)
+    name = db.Column(db.String, nullable=False)
+    rsvp = db.Column(db.String, nullable=False)
+    dietary = db.Column(db.String, default='')
+    phone_number = db.Column(db.String, default='')
+    dance_song = db.Column(db.String, default='')
+
+@app.before_first_request
+def create_tables():
+    db.create_all()
 
 # Load short names
 def load_short_names():
@@ -61,13 +79,7 @@ def rsvp():
     raw_guest_string = guest_full_data[code]
     guests = [g.strip() for part in raw_guest_string.split('&') for g in part.split(',')]
 
-    # Load names that already RSVP'd
-    submitted_guests = set()
-    if os.path.exists(CSV_FILE):
-        with open(CSV_FILE, newline='') as csvfile:
-            reader = csv.DictReader(csvfile)
-            for row in reader:
-                submitted_guests.add(row['Name'])
+    submitted_guests = {rsvp.name for rsvp in RSVP.query.with_entities(RSVP.name).all()}
 
     return render_template('rsvp.html', guests=guests, submitted_guests=list(submitted_guests), group_name=raw_guest_string, code=code)
 
@@ -78,7 +90,6 @@ def submit_rsvp():
         return redirect(url_for('access_denied'))
 
     data = request.get_json()
-
     name = data.get('guest_name')
     rsvp = data.get('rsvp_response')
     dietary = data.get('dietary_requirements', '')
@@ -88,12 +99,21 @@ def submit_rsvp():
     timestamp = datetime.now().isoformat()
     full_phone = f"{country_code}{phone}" if phone else ''
 
-    file_exists = os.path.isfile(CSV_FILE)
-    with open(CSV_FILE, 'a', newline='') as csvfile:
-        writer = csv.writer(csvfile)
-        if not file_exists:
-            writer.writerow(['Timestamp', 'Name', 'RSVP', 'Dietary Requirements', 'Phone Number', 'Dance Song'])
-        writer.writerow([timestamp, name, rsvp, dietary, full_phone, song])
+    # Check if this guest has already RSVP'd
+    existing = RSVP.query.filter_by(name=name).first()
+    if existing:
+        return jsonify({'error': 'You’ve already submitted an RSVP. If you need to make a change, please contact us.'}), 400
+
+    new_rsvp = RSVP(
+        timestamp=timestamp,
+        name=name,
+        rsvp=rsvp,
+        dietary=dietary,
+        phone_number=full_phone,
+        dance_song=song
+    )
+    db.session.add(new_rsvp)
+    db.session.commit()
 
     return jsonify({'success': True}), 200
 
