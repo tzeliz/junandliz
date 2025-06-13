@@ -128,6 +128,32 @@ def favourites():
 def access_denied():
     return render_template('access_denied.html')
 
+@app.route('/export-csv')
+def export_csv():
+    # Connect to the database
+    conn = sqlite3.connect(DATABASE)
+    cursor = conn.cursor()
+
+    # Query the data you want to export
+    cursor.execute("SELECT * FROM rsvps")
+    rows = cursor.fetchall()
+
+    # Get column names from cursor description
+    columns = [desc[0] for desc in cursor.description]
+
+    # Create a CSV in memory
+    output = io.StringIO()
+    writer = csv.writer(output)
+    writer.writerow(columns)  # write header
+    writer.writerows(rows)    # write data rows
+
+    conn.close()
+
+    # Build the response to download the CSV
+    response = Response(output.getvalue(), mimetype='text/csv')
+    response.headers["Content-Disposition"] = "attachment; filename=rsvps_export.csv"
+    return response
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
