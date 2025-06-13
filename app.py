@@ -21,6 +21,10 @@ class RSVP(db.Model):
     phone_number = db.Column(db.String, default='')
     dance_song = db.Column(db.String, default='')
 
+@app._got_first_request
+def create_tables():
+    db.create_all()
+
 # Load short names
 def load_short_names():
     guests = {}
