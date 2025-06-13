@@ -136,7 +136,7 @@ def export_csv():
     cursor = conn.cursor()
 
     # Query the data you want to export
-    cursor.execute("SELECT * FROM rsvps")
+    cursor.execute("SELECT * FROM rsvp")
     rows = cursor.fetchall()
 
     # Get column names from cursor description
