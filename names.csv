@@ -1,105 +1,106 @@
-code,name
-lfa62746538,Mum & Dad
-lfa73756604,Szen
-lfa18403807,"Uncle Johnnie, Aunty Lynn, Ian, Anna, Sean & Nia"
-lfa54379215,"Uncle Peter, Aunty Wei, Alex, Oli & Izzy"
-lfa75809421,"Tuahku, Aunty Maria, Natasha & Tze Han"
-lfa73649273,"Behku, Aunty Joyi, Sheen Ly & Sheen Ann"
-lfa29423290,"Gipek, Giem, Xue Rou Cheh Cheh, Tzuin Kor Kor, Kay Reen & Yi Lynn"
-lfa46494873,Sar Kor & Uncle Hwee Swee
-lfa35248444,Ji Kor & Ah Vieh cheh cheh
-lfa42593924,Sar Em
-lfa62606654,Uncle Pathman & Aunty Hui Siam
-mfr70136023,Himaansu & Kyra
-mfr15630119,Melanie & Ben
-mfr69225681,Tom
-mfr97644207,Shimin & Bogdan
-mfr65300352,Jaron
-mfr34515260,Kelvin & Yu Han
-mfr24994617,Janene
-mfr36934269,Zi Yang
-mfr14367580,Cynthia & Suyash
-mfr64642904,Sheen & Sam
-mfr41121548,Emily & Kirjon
-mfr20878136,Jasper & Karina
-mfr28971527,Adrian & Quinn
-lfr11708276,Claud & Tian Yi
-lfr58987924,Kat & Ihsan
-lfr56082256,Sugi
-lfr85250521,Gui
-lfr87826280,Ryan
-lfr80456518,Nat & Esther
-lfr21847638,Vin & Zen
-lfr36154595,Kar Yee
-lfr80104003,Esther
-lfr48821475,Chris & Vincent
-lfr18633180,Anna & Aaron
-lfr13965707,Charlotte & Ali
-lfr63853452,Jay & James
-lfr79886888,"Arthur, Yi Ping & Aunty Jackie"
-lfr79315209,"Boon Kuan & Jia Sin, Uncle Onn & Aunty Winnie"
-lfr83291029,Sher Wu
-jfr99637564,Kasin & Roong Fang
-jfr38034460,Guo Wei
-jfr62469867,Alex & Yee Ting
-jfr82202256,Yang & Lysha
-jfr59557657,Zhong
-jfr23661753,Kristi & Calvin
-jfr70956121,Walter & Lauren
-jfr51515983,Stan
-jfr63786667,Ming & Eunice
-jfr80201159,Charissa
-jfr63380040,Teddy
-jfr24192037,Rohan
-jfr26585459,Vicky & Clinston
-jfr77267126,Dan Boyd
-jfm20347018,Mummy & Daddy
-jfm85031729,Jo Xin & Weng Han
-jfm34780821,Ah Ma
-jfm48975222,Kheong Poh Guat & Ang Thean Soo
-jfm49510517,Ting Ting & Emma
-jfm59472039,"Hao Hao, Jo Ann, Valerie & Hayley"
-jfm69729144,"Ah Ku, Ah Kim & Jaden"
-jfm40131855,"Nelson, Nelson's wife & Estelle"
-jfm89016431,"Ah Ku & Ah Kim, Marcus, Yen, Celine & Jia Ting"
-jfm80059612,"Ee Tiow, San Yi, Terrence & Adeline"
-jfm58536918,"Xiao Yi, Sky & Pewter"
-jfm98601782,Big Kor Kor & Ah Tiow
-jfm65251268,"Yi Ling, Ed, Lizzie & Matthew"
-jfm21820544,Yi Ping & Richard
-jfm11765188,Ah Pek & Ah Em
-jfm16893907,"Jill, Lun, Elliot & Isabelle"
-jfm54598733,"Celine, Matt & Nathan"
-jfm82560263,Ah Phaik Kor Kor
-jfm39327676,"Ah Tiow, Wei Jun, Yi Qian & Michael"
-jfm16060273,"Ah Jin Chek, Ah Chim, Darren & Bernice"
-lfr29259912,Uncle Chiam & Aunty Gerry
-lfr17941819,Uncle David & Aunty Annie
-lfr53832944,Aunty Shea Nee
-lfr29727225,Uncle Yew Chye & Aunty Dora
-lfr47186347,Aunty Lee Fung
-lfr23747988,"Uncle Sew Kuan, Aunty Irene & Aunty"
-lfr66473636,Uncle Hut Leng & Aunty Poh Choo
-lfr79024022,Uncle Boon & Aunty Janice
-lfr88698884,Uncle Swee Boon & Aunty Soo Hoon
-lfr61388018,Uncle Lian Huat & Aunty Linda
-lfr63825028,Uncle Yang Kiaw & Aunty Koi Hoon
-lfr97792056,Uncle Kan Hwee & Aunty Yee Wen
-jfr46897589,Caroline
-test290525,Jun & Liz
-jfm35881926,"Soon Suan Eng, Lim Say Hean"
-jfm22556940,"Booy Eng Weng, Lim Saw Hooi, Booy Kel Hern"
-jfm65318422,"Lim Say Khoon, Low Ley Tian, Lim Yoo Hee, Lim Huey Sheen"
-jfm54322820,Lim Say Khiam
-jfm62697338,Loke Saw Sim
-jfm38555786,"Ong Saw Hong, Yeap Chan Guan, Yeap Eu Wern, Yeap Eu Jane"
-jfm38753489,"Lee Swee Kheng, Leong Fook Yu"
-jfm22145370,Mr & Mrs Lee Guan Lin
-jfm78303630,Mdm Teh Geok Lean
-jfm44012294,Mr & Mrs Marvin Lee
-jfm61185064,Mr & Mrs John Lee
-jfm63944567,Doris Lee & Joie Koo
-jfn81403691,"Sean Soo, Cheng Sze, Tiffany Soo"
-jfn77870164,"Scott Satterfield, Wei Ping Satterfield"
-jfn23193496,"Hubert Cheng, Kelly Au"
-jfn98915249,"Low Peng Swee, Duncan Tan"
+code,name,formal_invite
+lfa62746538,Mum & Dad,no
+lfa73756604,Szen,no
+lfa18403807,"Uncle Johnnie, Aunty Lynn, Ian, Anna, Sean & Nia",no
+lfa54379215,"Uncle Peter, Aunty Wei, Alex, Oli & Izzy",no
+lfa75809421,"Tuahku, Aunty Maria, Natasha & Tze Han",no
+lfa73649273,"Behku, Aunty Joyi, Sheen Ly & Sheen Ann",no
+lfa29423290,"Gipek, Giem, Xue Rou Cheh Cheh, Tzuin Kor Kor, Kay Reen & Yi Lynn",no
+lfa46494873,Sar Kor & Uncle Hwee Swee,no
+lfa35248444,Ji Kor & Ah Vieh cheh cheh,no
+lfa42593924,Sar Em,no
+lfa62606654,Uncle Pathman & Aunty Hui Siam,no
+mfr70136023,Himaansu & Kyra,no
+mfr15630119,Melanie & Ben,no
+mfr69225681,Tom,no
+mfr97644207,Shimin & Bogdan,no
+mfr65300352,Jaron,no
+mfr34515260,Kelvin & Yu Han,no
+mfr24994617,Janene,no
+mfr36934269,Zi Yang,no
+mfr14367580,Cynthia & Suyash,no
+mfr64642904,Sheen & Sam,no
+mfr41121548,Emily & Kirjon,no
+mfr20878136,Jasper & Karina,no
+mfr28971527,Adrian & Quinn,no
+lfr11708276,Claud & Tian Yi,no
+lfr58987924,Kat & Ihsan,no
+lfr56082256,Sugi,no
+lfr85250521,Gui,no
+lfr87826280,Ryan,no
+lfr80456518,Nat & Esther,no
+lfr21847638,Vin & Zen,no
+lfr36154595,Kar Yee,no
+lfr80104003,Esther,no
+lfr48821475,Chris & Vincent,no
+lfr18633180,Anna & Aaron,no
+lfr13965707,Charlotte & Ali,no
+lfr63853452,Jay & James,no
+lfr79886888,"Arthur, Yi Ping & Aunty Jackie",no
+lfr79315209,"Boon Kuan & Jia Sin, Uncle Onn & Aunty Winnie",no
+lfr83291029,Sher Wu,no
+jfr99637564,Kasin & Roong Fang,no
+jfr38034460,Guo Wei,no
+jfr62469867,Alex & Yee Ting,no
+jfr82202256,Yang & Lysha,no
+jfr59557657,Zhong,no
+jfr23661753,Kristi & Calvin,no
+jfr70956121,Walter & Lauren,no
+jfr51515983,Stan,no
+jfr63786667,Ming & Eunice,no
+jfr80201159,Charissa,no
+jfr63380040,Teddy,no
+jfr24192037,Rohan,no
+jfr26585459,Vicky & Clinston,no
+jfr77267126,Dan Boyd,no
+jfm20347018,Mummy & Daddy,no
+jfm85031729,Jo Xin & Weng Han,no
+jfm34780821,Ah Ma,yes
+jfm48975222,Kheong Poh Guat & Ang Thean Soo,yes
+jfm49510517,Ting Ting & Emma,yes
+jfm59472039,"Hao Hao, Jo Ann, Valerie & Hayley",yes
+jfm69729144,"Ah Ku, Ah Kim & Jaden",yes
+jfm40131855,"Nelson, Nelson's wife & Estelle",yes
+jfm89016431,"Ah Ku & Ah Kim, Marcus, Yen, Celine & Jia Ting",yes
+jfm80059612,"Ee Tiow, San Yi, Terrence & Adeline",yes
+jfm58536918,"Xiao Yi, Sky & Pewter",yes
+jfm98601782,Big Kor Kor & Ah Tiow,yes
+jfm65251268,"Yi Ling, Ed, Lizzie & Matthew",yes
+jfm21820544,Yi Ping & Richard,yes
+jfm11765188,Ah Pek & Ah Em,yes
+jfm16893907,"Jill, Lun, Elliot & Isabelle",yes
+jfm54598733,"Celine, Matt & Nathan",yes
+jfm82560263,Ah Phaik Kor Kor,yes
+jfm39327676,"Ah Tiow, Wei Jun, Yi Qian & Michael",yes
+jfm16060273,"Ah Jin Chek, Ah Chim, Darren & Bernice",yes
+lfr29259912,Uncle Chiam & Aunty Gerry,no
+lfr17941819,Uncle David & Aunty Annie,no
+lfr53832944,Aunty Shea Nee,no
+lfr29727225,Uncle Yew Chye & Aunty Dora,no
+lfr47186347,Aunty Lee Fung,no
+lfr23747988,"Uncle Sew Kuan, Aunty Irene & Aunty",no
+lfr66473636,Uncle Hut Leng & Aunty Poh Choo,no
+lfr79024022,Uncle Boon & Aunty Janice,no
+lfr88698884,Uncle Swee Boon & Aunty Soo Hoon,no
+lfr61388018,Uncle Lian Huat & Aunty Linda,no
+lfr63825028,Uncle Yang Kiaw & Aunty Koi Hoon,no
+lfr97792056,Uncle Kan Hwee & Aunty Yee Wen,no
+jfr46897589,Caroline,no
+test290525,Jun & Liz,no
+jfr27820182,Ah Boyz II Ladyboyz,no
+jfm35881926,"Soon Suan Eng, Lim Say Hean",yes
+jfm22556940,"Booy Eng Weng, Lim Saw Hooi, Booy Kel Hern",yes
+jfm65318422,"Lim Say Khoon, Low Ley Tian, Lim Yoo Hee, Lim Huey Sheen",yes
+jfm54322820,Lim Say Khiam,yes
+jfm62697338,Loke Saw Sim,yes
+jfm38555786,"Ong Saw Hong, Yeap Chan Guan, Yeap Eu Wern, Yeap Eu Jane",yes
+jfm38753489,"Lee Swee Kheng, Leong Fook Yu",yes
+jfm22145370,Mr & Mrs Lee Guan Lin,yes
+jfm78303630,Mdm Teh Geok Lean,yes
+jfm44012294,Mr & Mrs Marvin Lee,yes
+jfm61185064,Mr & Mrs John Lee,yes
+jfm63944567,Doris Lee & Joie Koo,yes
+jfn81403691,"Sean Soo, Cheng Sze, Tiffany Soo",yes
+jfn77870164,"Scott Satterfield, Wei Ping Satterfield",yes
+jfn23193496,"Hubert Cheng, Kelly Au",yes
+jfn98915249,"Low Peng Swee, Duncan Tan",yes

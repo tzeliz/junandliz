@@ -34,7 +34,10 @@ def load_short_names():
     with open('names.csv', newline='') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
-            guests[row['code']] = row['name']
+            guests[row['code']] = {
+                'name': row['name'],
+                'formal_invite': row.get('formal_invite', 'no').lower()  # default to 'no'
+            }
     return guests
 
 # Load full names
@@ -63,8 +66,15 @@ def invitation():
     code = request.args.get('code')
     if not code or code not in guest_data:
         return redirect(url_for('access_denied'))
-    guest_name = guest_data[code]
-    return render_template('invitation.html', guest_name=guest_name, code=code)
+
+    guest = guest_data[code]
+    guest_name = guest['name']
+    formal_invite = guest['formal_invite']
+
+    return render_template('invitation.html',
+                           guest_name=guest_name,
+                           formal_invite=formal_invite,
+                           code=code)
 
 @app.route('/details')
 def details():
