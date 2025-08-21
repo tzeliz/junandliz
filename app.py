@@ -36,7 +36,8 @@ def load_short_names():
         for row in reader:
             guests[row['code']] = {
                 'name': row['name'],
-                'formal_invite': row.get('formal_invite', 'no').lower()  # default to 'no'
+                'formal_invite': row.get('formal_invite', 'no').lower(),  # default to 'no'
+                'extended_deadline': row.get('extended_deadline', 'no').lower()  # default to 'no'
             }
     return guests
 
@@ -70,10 +71,12 @@ def invitation():
     guest = guest_data[code]
     guest_name = guest['name']
     formal_invite = guest['formal_invite']
+    extended_deadline = guest['extended_deadline']
 
     return render_template('invitation.html',
                            guest_name=guest_name,
                            formal_invite=formal_invite,
+                           extended_deadline=extended_deadline,
                            code=code)
 
 @app.route('/details')
