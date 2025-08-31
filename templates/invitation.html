@@ -29,17 +29,7 @@
     <section id="homepage">
         <h2 class="name-text"><strong><em>{{ guest_name }}</em></strong></h2>
     
-        {% if formal_invite == 'yes' %}
-            <p class="paragraph-text">Jun Ming and Tze Liz, together with their families, would like to formally invite you to their wedding.</p>
-            <p class="paragraph-text">峻民和诗丽与家人<br>
-                诚挚邀请您来参加我们的婚宴</p>
-            <p class="paragraph-text-details">SATURDAY 29 NOV 2025<br>
-                SIX THIRTY IN THE EVENING<br>
-                PARKROYAL PENANG RESORT<br>
-                <em>formal attire</em>
-            </p>
-            <p class="paragraph-text">Please RSVP by 31st August 2025.</p>
-        {% elif formal_invite == 'yes' and extended_deadline == 'yes' %}
+        {% if formal_invite == 'yes' and extended_deadline == 'yes' %}
             <p class="paragraph-text">Jun Ming and Tze Liz, together with their families, would like to formally invite you to their wedding.</p>
             <p class="paragraph-text">峻民和诗丽与家人<br>
                 诚挚邀请您来参加我们的婚宴</p>
@@ -49,6 +39,16 @@
                 <em>formal attire</em>
             </p>
             <p class="paragraph-text">Please RSVP by 30th September 2025.</p>
+        {% elif formal_invite == 'yes' %}
+            <p class="paragraph-text">Jun Ming and Tze Liz, together with their families, would like to formally invite you to their wedding.</p>
+            <p class="paragraph-text">峻民和诗丽与家人<br>
+                诚挚邀请您来参加我们的婚宴</p>
+            <p class="paragraph-text-details">SATURDAY 29 NOV 2025<br>
+                SIX THIRTY IN THE EVENING<br>
+                PARKROYAL PENANG RESORT<br>
+                <em>formal attire</em>
+            </p>
+            <p class="paragraph-text">Please RSVP by 31st August 2025.</p>
         {% elif extended_deadline == 'yes' %}
             <p class="paragraph-text">We are so excited to formally invite you to our wedding. It would mean the world to celebrate the happiest day of our lives with our favourite people - <em>it wouldn't be the same without you.</em></p>
             <p class="paragraph-text">诚挚邀请您来参加我们的婚礼<br>
@@ -70,6 +70,7 @@
             </p>
             <p class="paragraph-text">Please RSVP by 31st August 2025.</p>
         {% endif %}
+
     </section>
 
     <button class="rsvp-button" onclick="location.href='{{ url_for('rsvp') }}?code={{ code }}'">RSVP</button>
