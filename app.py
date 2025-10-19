@@ -39,7 +39,7 @@ def load_short_names():
                 'formal_invite': row.get('formal_invite', 'no').lower(),  # default to 'no'
                 'extended_deadline': row.get('extended_deadline', 'no').lower(),  # default to 'no'
                 'last_minute': row.get('last_minute', 'no').lower(),  # default to 'no'
-                'last_minute2': row.get('last_minute', 'no').lower()  # default to 'no'
+                'last_minute2': row.get('last_minute2', 'no').lower()  # default to 'no'
             }
     return guests
 
