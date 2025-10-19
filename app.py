@@ -38,7 +38,8 @@ def load_short_names():
                 'name': row['name'],
                 'formal_invite': row.get('formal_invite', 'no').lower(),  # default to 'no'
                 'extended_deadline': row.get('extended_deadline', 'no').lower(),  # default to 'no'
-                'last_minute': row.get('last_minute', 'no').lower()  # default to 'no'
+                'last_minute': row.get('last_minute', 'no').lower(),  # default to 'no'
+                'last_minute2': row.get('last_minute', 'no').lower()  # default to 'no'
             }
     return guests
 
@@ -74,12 +75,15 @@ def invitation():
     formal_invite = guest['formal_invite']
     extended_deadline = guest['extended_deadline']
     last_minute = guest['last_minute']
+    last_minute2 = guest['last_minute2'
+    ]
 
     return render_template('invitation.html',
                            guest_name=guest_name,
                            formal_invite=formal_invite,
                            extended_deadline=extended_deadline,
                            last_minute=last_minute,
+                           last_minute2=last_minute2,
                            code=code)
 
 @app.route('/details')
